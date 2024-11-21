@@ -1,0 +1,127 @@
+
+<script>
+import SobreNosotrosLogic from '../router/SobreNosotros.js'; // Importando el archivo de lógica
+
+export default {
+  name: 'SobreNosotros',
+  ...SobreNosotrosLogic, // Usando la lógica importada
+};
+import { createStore } from 'vuex';
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+
+// Estado inicial
+const state = {
+  authToken: localStorage.getItem('token') || null, // Token JWT
+  tokenExpiration: localStorage.getItem('tokenExpiration') || null, // Expiración del token
+  user: JSON.parse(localStorage.getItem('user')) || null, // Información del usuario decodificada
+};
+
+// Mutaciones
+const mutations = {
+  SET_AUTH_TOKEN(state, { token, expiration }) {
+    state.authToken = token;
+    state.tokenExpiration = expiration;
+    localStorage.setItem('token', token); // Almacena el token en localStorage
+    localStorage.setItem('tokenExpiration', expiration); // Almacena la expiración en localStorage
+  },
+  CLEAR_AUTH_TOKEN(state) {
+    state.authToken = null;
+    state.tokenExpiration = null;
+    state.user = null; // Limpia el estado del usuario
+    localStorage.removeItem('token'); // Limpia el token de localStorage
+    localStorage.removeItem('tokenExpiration'); // Limpia la expiración de localStorage
+    localStorage.removeItem('user'); // Limpia el usuario de localStorage
+  },
+  SET_USER(state, user) {
+    state.user = user;
+    localStorage.setItem('user', JSON.stringify(user)); // Almacena la información del usuario en localStorage
+  },
+};
+
+// Acciones
+const actions = {
+  async login({ commit }, credentials) {
+    try {
+      const response = await axios.post('http://localhost:3000/api/auth/login', credentials);
+      const { token } = response.data;
+      const expirationDuration = 3600000; // 1 hora en milisegundos
+      const expirationTime = Date.now() + expirationDuration;
+
+      // Establecer token y expiración en el estado y localStorage
+      commit('SET_AUTH_TOKEN', { token, expiration: expirationTime });
+
+      // Decodificar el token para obtener información del usuario
+      const user = jwtDecode(token);
+      commit('SET_USER', user);
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+      throw error; // Lanza el error para manejarlo en el componente
+    }
+  },
+
+  async logout({ commit }) {
+    try {
+      await axios.post('http://localhost:3000/api/auth/logout');
+      commit('CLEAR_AUTH_TOKEN'); // Limpia el token y la información del usuario
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+      throw error; // Lanza el error para manejarlo en el componente
+    }
+  },
+
+  checkAuth({ commit }) {
+    const token = localStorage.getItem('token');
+    const tokenExpiration = localStorage.getItem('tokenExpiration');
+    const currentTime = Date.now();
+
+    if (token && tokenExpiration && currentTime < parseInt(tokenExpiration, 10)) {
+      commit('SET_AUTH_TOKEN', { token, expiration: tokenExpiration });
+      const user = jwtDecode(token);
+      commit('SET_USER', user);
+    } else {
+      commit('CLEAR_AUTH_TOKEN'); // Limpia si el token es inexistente o ha expirado
+    }
+  },
+
+  async fetchUser({ commit }) {
+    try {
+      const response = await axios.get('http://localhost:3000/api/auth/user', {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      });
+      commit('SET_USER', response.data); // Almacena la información del usuario
+    } catch (error) {
+      console.error('Error al obtener la información del usuario:', error);
+      if (error.response && error.response.status === 401) {
+        // Token inválido o expirado
+        commit('CLEAR_AUTH_TOKEN');
+      }
+    }
+  },
+};
+
+// Getters
+const getters = {
+  isAuthenticated: (state) => !!state.authToken && Date.now() < parseInt(state.tokenExpiration, 10),
+  getUser: (state) => state.user,
+  userRole: (state) => (state.user ? state.user.role : null),
+};
+
+// Crear el store
+const store = createStore({
+  state,
+  mutations,
+  actions,
+  getters,
+});
+
+export default store;
+
+
+
+
+<style scoped>
+@import url('../styles/FutbolCanchasForm.css');  /* Importando los estilos externos */
+
+/* Los estilos locales pueden ir aquí si los necesitas */
+</style>

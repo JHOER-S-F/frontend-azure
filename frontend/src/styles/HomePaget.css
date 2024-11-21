@@ -1,0 +1,316 @@
+
+.hero {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 3rem;
+    position: relative;
+    animation: rotateBackground 50s infinite; /* 15 segundos para una rotación infinita */
+  }
+  
+  /* Animación para rotar las imágenes de fondo */
+  @keyframes rotateBackground {
+    0% {
+      background-image: url('../assets/a1.jpg'); /* Imagen 1 */
+    }
+    33% {
+      background-image: url('../assets/a6.jpg'); /* Imagen 2 */
+    }
+    66% {
+      background-image: url('../assets/a4.jpg'); /* Imagen 3 */
+    }
+    100% {
+      background-image: url('../assets/b1.jpg'); /* Regresa a la imagen inicial */
+    }
+  }
+  
+  
+  /* Título principal (antes h2, ahora h1) */
+  .hero h1 {
+    font-family: 'Abril Fatface', serif;
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: #42b983; /* Verde primario */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra oscura para destacar */
+    padding: 1rem 2rem;
+    border: 3px solid transparent; /* Borde inicial transparente */
+    border-radius: 12px;
+    transition: border 0.5s, transform 0.3s ease; /* Transición para borde y escalado */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Efecto de sombra y brillo */
+  .hero h1::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 200%;
+    height: 100%;
+     /* Gradiente personalizado *//* Degradado verde */
+    transform: translateX(-50%) scaleX(0);
+    transition: transform 0.5s ease-in-out;
+    opacity: 0.5;
+    z-index: -1;
+  }
+  
+  .hero h1:hover::after {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 1;
+  }
+  
+  /* Efecto de hover en h1 */
+  .hero h1:hover {
+    
+    transform: scale(1.05); /* Efecto de zoom suave */
+  }
+  
+  /* Efecto de letra flotante */
+  .hero h1 span {
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .hero h1:hover span {
+    transform: translateY(-5px);
+    color: #FFD700; /* Color dorado en hover */
+  }
+  
+  /* Estilo del párrafo */
+  .hero p {
+    font-size: 1.8rem;
+    margin: 2rem 0;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff; /* Blanco para el texto */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra para mejor legibilidad */
+  }
+  
+  /* Botón principal */
+  .btn {
+    background-color: #FFD700; /* Dorado */
+    padding: 0.8rem 2rem;
+    color: #000; /* Color de texto negro */
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block;
+    margin-top: 2rem;
+  }
+  
+  .btn:hover {
+    background-color: #FFA500; /* Naranja cuando se pasa el cursor */
+  }
+  
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2.5rem; /* Tamaño más pequeño en pantallas pequeñas */
+    }
+  
+    .hero p {
+      font-size: 1.4rem; /* Ajuste de tamaño de párrafo en pantallas pequeñas */
+    }
+  
+    .btn {
+      padding: 0.6rem 1.5rem; /* Ajuste de tamaño de botón en pantallas pequeñas */
+    }
+  }
+  
+  /* Sección de Características */
+  .features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 2rem;
+    padding: 4rem 2rem;
+    background-color: #f4f4f4; /* Fondo neutro claro */
+  }
+  
+  .feature-item {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    text-align: center;
+    width: 280px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .feature-item img {
+    width: 120px;
+    margin-bottom: 1.5rem;
+    border-radius: 50%;
+    border: 3px solid #42b983; /* Verde para resaltar */
+    padding: 0.7rem;
+    background-color: #fff;
+  }
+  
+  .feature-item h3 {
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+  
+  .feature-item p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 1rem 0 0;
+  }
+  
+  @media (max-width: 768px) {
+    .features {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .feature-item {
+      width: 90%;
+    }
+  }
+  
+  /* ANIMACIONES */
+  [data-animate="fade-in"] {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: var(--animation-delay, 0s);
+    animation-duration: var(--animation-duration, 1s);
+  }
+  
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(-10px);
+    }
+  
+  
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+ /* Contenedor de Testimonios */
+.testimonials {
+  background-color: #006400; /* Verde oscuro de fondo */
+  color: white;
+  text-align: center;
+  padding: 6rem 2rem 4rem; /* Más espacio superior para el título */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+}
+
+/* Título de Testimonios */
+.testimonials h2 {
+  position: absolute;
+  top: 1rem; /* Espacio superior para separarlo del borde */
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  color: #98b4d1; /* Color azul de acento */
+  padding: 10px 20px;
+  
+  border-radius: 8px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.testimonials h2:hover {
+  transform: translate(-50%, -5px); /* Efecto de desplazamiento en hover */
+  color: #dbb38f; /* Color naranja en hover */
+}
+
+/* Estilo de cada Testimonio */
+.testimonial {
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.15); /* Fondo semitransparente */
+  padding: 2rem;
+  border: 2px solid #FFD700; /* Bordes dorados */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  transform: scale(0.95); /* Tamaño inicial reducido */
+}
+
+.testimonial.visible {
+  opacity: 1;
+  transform: scale(1.05); /* Agrandamiento en la transición */
+}
+
+/* Estilo oculto para testimonios */
+.testimonial-hidden {
+  display: none;
+}
+
+  /* CTA */
+  .cta {
+    background-color: #FFD700; /* Dorado */
+    text-align: center;
+    padding: 3rem 2rem;
+    margin: 2rem auto 0;
+    border: 3px solid #006400; /* Verde oscuro */
+    border-radius: 12px;
+    color: #000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+  }
+  
+  .cta h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .cta p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .cta .btn {
+    background-color: #006400; /* Verde oscuro */
+    color: #FFD700; /* Dorado */
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+  }
+  
+  .cta .btn:hover {
+    background-color: #004b00; /* Verde más oscuro */
+  }

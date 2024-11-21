@@ -1,0 +1,164 @@
+.sobre-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    text-align: center;
+    background-color: #f0f4f8; /* Fondo suave */
+    color: #333;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+    overflow: hidden; /* Evita que se desborden los bordes redondeados */
+  }
+  
+  h2 {
+    font-family: 'Roboto', sans-serif; /* Fuente más moderna y legible */
+    font-size: 2.5em;
+    color: #1e90ff; /* Azul vibrante */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px; /* Espaciado para mayor claridad */
+    font-weight: 600;
+    transition: all 0.3s ease; /* Transición suave */
+  }
+  
+  h2:hover {
+    color: #104e8b; /* Color más oscuro al pasar el ratón */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil al pasar el ratón */
+    transform: translateY(-5px); /* Efecto de elevar el texto */
+  }
+  
+  p {
+    font-family: 'Open Sans', sans-serif; /* Fuente más suave y accesible */
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6; /* Espaciado entre líneas para mejorar la legibilidad */
+    transition: all 0.3s ease; /* Transición suave */
+  }
+  
+  p:hover {
+    color: #333; /* Oscurece el color al pasar el ratón */
+    transform: translateX(5px); /* Desplazamiento lateral para el efecto */
+  }
+  
+  .accordion-container {
+    text-align: left;
+    margin-top: 20px;
+    padding-right: 10px;
+  }
+  
+  .accordion {
+    background-color: #fff;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Apunta a la interactividad */
+    border-left: 5px solid #1e90ff; /* Barra lateral para resaltar */
+  }
+  
+  .accordion:hover {
+    transform: translateY(-5px); /* Animación suave */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más prominente */
+  }
+  
+  .accordion h3 {
+    font-size: 1.5em;
+    color: #1e90ff;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    font-weight: 600;
+    padding-right: 20px; /* Espaciado del icono */
+  }
+  
+  .accordion h3:hover {
+    color: #104e8b; /* Oscurece al pasar el ratón */
+  }
+  
+  .accordion-content {
+    margin-top: 15px;
+  }
+  
+  .accordion-text-image {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px; /* Espacio entre la imagen y el texto */
+  }
+  
+  .accordion-image {
+    width: 45%; /* Asegura que la imagen ocupe el 45% del ancho */
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    margin-right: 15px; /* Margen pequeño entre imagen y texto */
+  }
+  
+  .accordion-image:hover {
+    transform: scale(1.05); /* Efecto de zoom al pasar el ratón sobre la imagen */
+  }
+  
+  .accordion p {
+    font-size: 1.1em;
+    color: #333;
+    margin-top: 10px;
+    line-height: 1.6;
+    padding-left: 20px; /* Alineación más ordenada */
+    margin-bottom: 0;
+  }
+  
+  .accordion-container .accordion:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  
+  .accordion-container .accordion .accordion-content {
+    display: none;
+    padding-left: 20px;
+  }
+  
+  .accordion-container .accordion.active .accordion-content {
+    display: block;
+  }
+  
+  .accordion-container .accordion.active h3::after {
+    font-size: 1.5em;
+    margin-left: 10px;
+  }
+  
+  .accordion-container .accordion h3::after {
+    font-size: 1.5em;
+    margin-left: 10px;
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .sobre-container {
+      padding: 15px;
+    }
+  
+    h2 {
+      font-size: 2em;
+    }
+  
+    p, .accordion p {
+      font-size: 1em;
+    }
+  
+    .accordion h3 {
+      font-size: 1.3em;
+    }
+  
+    .accordion-text-image {
+      flex-direction: column;
+      align-items: flex-start; /* Cambia a columna en pantallas pequeñas */
+    }
+  
+    .accordion-image {
+      width: 100%; /* La imagen ocupa el 100% del ancho en pantallas pequeñas */
+      margin-right: 0;
+    }
+  }
