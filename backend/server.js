@@ -18,13 +18,6 @@ const verifyToken = require('./middleware/verifyToken'); // Middleware de autent
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Configuración de CORS
-app.use(cors({
-    origin: process.env.CORS_ORIGIN || 'http://localhost:8080',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-}));
-
 // Middleware para procesar JSON
 app.use(bodyParser.json());
 
