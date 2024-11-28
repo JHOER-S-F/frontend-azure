@@ -83,7 +83,7 @@ export default {
   methods: {
     async fetchUser() {
       try {
-        const response = await axios.get('http://localhost:3000/api/auth/user', {
+        const response = await axios.get('/api/auth/user', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -107,7 +107,7 @@ export default {
       }
 
       try {
-        const response = await axios.post('http://localhost:3000/api/cam/contact', {
+        const response = await axios.post('/api/cam/contact', {
           name: this.user ? this.user.nombre : this.name, // Utiliza el nombre autenticado si está presente
           email: this.user ? this.user.correo : this.email, // Utiliza el correo autenticado si está presente
           message: this.message,

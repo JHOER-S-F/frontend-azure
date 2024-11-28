@@ -44,7 +44,7 @@ export default {
 
     async fetchUser() {
       try {
-        const response = await axios.get('http://localhost:3000/api/auth/user', {
+        const response = await axios.get('/api/auth/user', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },

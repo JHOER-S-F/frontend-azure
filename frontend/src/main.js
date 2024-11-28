@@ -12,7 +12,7 @@ import './styles/global.css'; // Importar estilos globales
 library.add(faFacebook, faTwitter, faInstagram);
 
 // Establecer la URL base de axios
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'http://jhoer-soccerbook-cmcre0g5ffd5augt.eastus2-01.azurewebsites.net';
 
 // Configuración de interceptores de Axios para manejar errores globalmente
 axios.interceptors.response.use(

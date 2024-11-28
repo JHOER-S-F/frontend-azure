@@ -26,7 +26,7 @@ export default {
     async getClientes() {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get('http://localhost:3000/api/reservas/getClientes', {
+        const response = await axios.get('/api/reservas/getClientes', {
           headers: { Authorization: `Bearer ${token}` }
         });
         this.clientes = response.data;
@@ -41,7 +41,7 @@ export default {
     async getCanchas() {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get(`http://localhost:3000/api/reservas/getCanchas?cliente_id=${this.clienteSeleccionado}`, {
+        const response = await axios.get(`/api/reservas/getCanchas?cliente_id=${this.clienteSeleccionado}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         this.canchas = response.data;
@@ -64,7 +64,7 @@ export default {
       };
 
       try {
-        await axios.post('http://localhost:3000/api/reservas/makeReserva', reserva, {
+        await axios.post('/api/reservas/makeReserva', reserva, {
           headers: { Authorization: `Bearer ${token}` }
         });
         this.reservaExito = true;

@@ -58,7 +58,7 @@ export default {
       formData.append('imagen', this.cliente.imagen);
 
       try {
-        const response = await axios.post('http://localhost:3000/api/clientes', formData, {
+        const response = await axios.post('/api/clientes', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

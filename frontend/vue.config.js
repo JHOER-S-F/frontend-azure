@@ -1,10 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
 
-// Definir la URL del backend según el entorno
-const backendURL = process.env.NODE_ENV === 'production'
-  ? 'https://jhoer-soccerbook-cmcre0g5ffd5augt.eastus2-01.azurewebsites.net' // URL del backend en producción
-  : 'http://localhost:3000'; // URL del backend en desarrollo
+// URL del backend en producción
+const backendURL = 'https://jhoer-soccerbook-cmcre0g5ffd5augt.eastus2-01.azurewebsites.net';
 
 module.exports = {
   configureWebpack: {
@@ -19,7 +17,7 @@ module.exports = {
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
         __VUE_OPTIONS_API__: true,
         __VUE_PROD_DEVTOOLS__: false,
-        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false // Suprime advertencia de hidratación
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false, // Suprime advertencia de hidratación
       }),
     ],
     resolve: {
@@ -39,7 +37,7 @@ module.exports = {
       },
     },
   },
-  lintOnSave: process.env.NODE_ENV !== 'production',
+  lintOnSave: false,
   productionSourceMap: false,
   outputDir: 'dist',
   assetsDir: 'static',
