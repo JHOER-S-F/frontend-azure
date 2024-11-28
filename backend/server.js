@@ -16,7 +16,7 @@ const verifyToken = require('./middleware/verifyToken'); // Middleware de autent
 
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || jhoer-soccerbook-cmcre0g5ffd5augt.eastus2-01.azurewebsites.net;
 
 // Middleware para procesar JSON
 app.use(bodyParser.json());
@@ -53,5 +53,18 @@ app.use((err, req, res, next) => {
 
 // Iniciar el servidor
 app.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto http://localhost:${PORT}`);
+    console.log(`Servidor escuchando en el puerto http://${PORT}`);
 });
+
+
+
+
+// Conexión a la base de datos (asegurarse de que esté configurado correctamente)
+pool.getConnection()
+    .then(connection => {
+        console.log("Conexión a la base de datos exitosa");
+        connection.release();
+    })
+    .catch(err => {
+        console.error("Error de conexión a la base de datos:", err);
+    });
