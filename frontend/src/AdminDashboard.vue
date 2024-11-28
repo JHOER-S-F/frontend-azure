@@ -4,24 +4,24 @@
       <h1 class="dashboard-title">Administrador</h1>
       <div class="stats">
         <div v-if="dashboardData" class="stat">
-          <p>Total de Canchas: {{ dashboardData.totalCanchas }}</p>
-          <p>Total de Clientes: {{ dashboardData.totalClientes }}</p>
-          <p>Total de Reservas: {{ dashboardData.totalReservas }}</p>
-          <p>Total de Preguntas: {{ dashboardData.totalPreguntas }}</p>
-          <p>Total de usuarios: {{ dashboardData.totalUsuarios }}</p>
+          <p>Canchas: {{ dashboardData.totalCanchas }}</p>
+          <p>Clientes: {{ dashboardData.totalClientes }}</p>
+          <p>Reservas: {{ dashboardData.totalReservas }}</p>
+          <p>Preguntas: {{ dashboardData.totalPreguntas }}</p>
+          <p>Usuarios: {{ dashboardData.totalUsuarios }}</p>
         </div>
         <div v-else>
           <p>Cargando estadísticas...</p>
         </div>
       </div>
       <div class="top-data">
-        <h2>Canchas más reservadas</h2>
+        <h2>Canchas Reservadas</h2>
         <ul>
           <li v-for="cancha in topCanchas" :key="cancha.nombre">
             {{ cancha.nombre }} - {{ cancha.reservasCount }} reservas
           </li>
         </ul>
-        <h2>Clientes más activos</h2>
+        <h2>Clientes Activos</h2>
         <ul>
           <li v-for="cliente in topClientes" :key="cliente.nombre">
             {{ cliente.nombre }} - {{ cliente.reservasCount }} reservas
@@ -45,23 +45,23 @@
     </div>
 
     <div v-if="currentSection === 'canchas'" class="section-content">
-      <h2>Gestionar Canchas</h2>
+      <h2>Canchas</h2>
       <CanchaList @fetchData="fetchData" />
     </div>
     <div v-if="currentSection === 'clientes'" class="section-content">
-      <h2>Gestionar Clientes</h2>
+      <h2>Clientes</h2>
       <ClienteList @fetchData="fetchData" />
     </div>
     <div v-if="currentSection === 'preguntas'" class="section-content">
-      <h2>Gestionar Preguntas</h2>
+      <h2>Preguntas</h2>
       <PreguntaList @fetchData="fetchData" />
     </div>
     <div v-if="currentSection === 'reservas'" class="section-content">
-      <h2>Gestionar Reservas</h2>
+      <h2>Reservas</h2>
       <ReservaList @fetchData="fetchData" />
     </div>
     <div v-if="currentSection === 'usuarios'" class="section-content">
-      <h2>Gestionar Usuarios</h2>
+      <h2>Usuarios</h2>
       <UsuarioList @fetchData="fetchData" />
     </div>
   </div>

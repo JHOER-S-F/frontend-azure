@@ -30,9 +30,14 @@ app.use('/api/cam', camRoutes); // Rutas para mensajes de contacto
 
 // Sirviendo el frontend en producción
 if (process.env.NODE_ENV === 'production') {
+    const path = require('path');
+    const express = require('express');
+
+    // Sirve los archivos estáticos generados por Vue
     app.use(express.static(path.resolve(__dirname, '../frontend/dist')));
 
-    app.get('/', (req, res) => {
+    // Redirige todas las demás rutas al archivo index.html
+    app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, '../frontend/dist', 'index.html'));
     });
 }

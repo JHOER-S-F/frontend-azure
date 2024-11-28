@@ -4,7 +4,7 @@
 
     <form @submit.prevent="handleSubmit" class="form">
       <div class="form-group">
-        <label for="nombre" class="form-label">Nombre de la Cancha:</label>
+        <label for="nombre" class="form-label">Cancha:</label>
         <input v-model="form.nombre" type="text" id="nombre" required class="form-input" />
       </div>
 

@@ -1,6 +1,5 @@
 <template>
   <div class="preguntas-container">
-    <h2 class="section-title">Gestionar Preguntas</h2>
 
     <!-- Formulario para Crear Pregunta -->
     <div v-if="modoCreacion" class="form-container">

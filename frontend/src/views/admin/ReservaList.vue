@@ -1,6 +1,5 @@
 <template>
   <div class="gestion-reservas">
-    <h1 class="titulo-principal">Gestión de Reservas</h1>
 
     <!-- Lista de Reservas -->
     <div class="lista-reservas">

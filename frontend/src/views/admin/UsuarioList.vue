@@ -1,6 +1,5 @@
 <template>
   <div class="user-management">
-    <h1 class="title">Gestión de Usuarios</h1>
 
     <!-- Formulario de creación de usuario -->
     <form @submit.prevent="createUser" autocomplete="on" class="form-container">
