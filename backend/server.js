@@ -58,13 +58,3 @@ app.listen(PORT, () => {
 
 
 
-
-// Conexión a la base de datos (asegurarse de que esté configurado correctamente)
-pool.getConnection()
-    .then(connection => {
-        console.log("Conexión a la base de datos exitosa");
-        connection.release();
-    })
-    .catch(err => {
-        console.error("Error de conexión a la base de datos:", err);
-    });
