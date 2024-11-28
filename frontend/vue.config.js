@@ -3,7 +3,7 @@ const path = require('path');
 
 // Definir la URL del backend según el entorno
 const backendURL = process.env.NODE_ENV === 'production'
-  ? 'https://jhoerprueva3000-d4b8d2fccgfhbbek.canadacentral-01.azurewebsites.net' // URL del backend en producción
+  ? 'https://jhoer-soccerbook-cmcre0g5ffd5augt.eastus2-01.azurewebsites.net' // URL del backend en producción
   : 'http://localhost:3000'; // URL del backend en desarrollo
 
 module.exports = {

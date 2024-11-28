@@ -36,7 +36,7 @@ export default {
     async register() {
       this.error = null; // Resetea el error
       try {
-        await axios.post('http://localhost:3000/api/auth/register', {
+        await axios.post('/api/auth/register', {
           nombre: this.nombre,
           correo: this.correo,
           password: this.password,
