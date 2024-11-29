@@ -14,15 +14,20 @@ exports.register = async (req, res) => {
     const { nombre, correo, password } = req.body;
 
     try {
+        // Verificar si el correo ya está registrado
         const [existingUser] = await pool.query('SELECT * FROM usuarios WHERE correo = ?', [correo]);
         if (existingUser.length > 0) {
             return res.status(409).json({ message: 'El correo ya está registrado' });
         }
 
+        // Hashear la contraseña
         const hashedPassword = bcrypt.hashSync(password, 8);
+
+        // Insertar el nuevo usuario
         const [result] = await pool.query('INSERT INTO usuarios (nombre, correo, password) VALUES (?, ?, ?)', [nombre, correo, hashedPassword]);
 
-        const token = jwt.sign({ id: result.insertId }, jwtConfig.secret, { expiresIn: jwtConfig.expiresIn });
+        // Generar el token
+        const token = jwt.sign({ id: result.insertId, nombre, correo }, jwtConfig.secret, { expiresIn: jwtConfig.expiresIn });
 
         res.status(201).json({ auth: true, token });
     } catch (err) {
@@ -33,7 +38,6 @@ exports.register = async (req, res) => {
 
 // Función para iniciar sesión
 exports.login = async (req, res) => {
-    // Validar errores en la solicitud
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -42,28 +46,28 @@ exports.login = async (req, res) => {
     const { correo, password } = req.body;
 
     try {
-        // Buscar usuario en la base de datos
+        // Buscar el usuario en la base de datos
         const [results] = await pool.query('SELECT * FROM usuarios WHERE correo = ?', [correo]);
         if (results.length === 0) {
             return res.status(404).json({ message: 'Usuario no encontrado' });
         }
 
         const user = results[0];
-        
-        // Verificar contraseña
+
+        // Verificar la contraseña
         const passwordIsValid = bcrypt.compareSync(password, user.password);
         if (!passwordIsValid) {
             return res.status(401).json({ auth: false, token: null, message: 'Contraseña incorrecta' });
         }
 
-        // Incluir el rol en el payload del token
+        // Generar el token con el rol y más datos
         const token = jwt.sign(
-            { id: user.id, role: user.role }, // Aquí incluimos el rol del usuario
+            { id: user.id, nombre: user.nombre, correo: user.correo, role: user.role },
             jwtConfig.secret,
             { expiresIn: jwtConfig.expiresIn }
         );
 
-        // Enviar el token y el rol como respuesta
+        // Enviar el token y el rol en la respuesta
         res.status(200).json({ auth: true, token, role: user.role });
     } catch (err) {
         console.error(err);
@@ -83,6 +87,7 @@ exports.user = async (req, res) => {
         const decoded = jwt.verify(token.replace('Bearer ', ''), jwtConfig.secret);
         const usuarioId = decoded.id;
 
+        // Obtener información del usuario por ID
         const [user] = await pool.query('SELECT nombre, correo FROM usuarios WHERE id = ?', [usuarioId]);
 
         if (user.length === 0) {
@@ -101,6 +106,6 @@ exports.user = async (req, res) => {
 
 // Función para logout
 exports.logout = (req, res) => {
-    // Normalmente el logout se maneja eliminando el token del frontend
+    // El logout se maneja normalmente en el frontend, eliminando el token
     res.status(200).json({ auth: false, token: null, message: 'Logout exitoso' });
 };

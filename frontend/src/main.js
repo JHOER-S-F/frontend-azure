@@ -11,16 +11,17 @@ import './styles/global.css'; // Importar estilos globales
 // FontAwesome imports
 library.add(faFacebook, faTwitter, faInstagram);
 
-// Establecer la URL base de axios
-axios.defaults.baseURL = 'https://jhoer-soccerbook-cmcre0g5ffd5augt.eastus2-01.azurewebsites.net';
+// Establecer la URL base de Axios desde las variables de entorno
+const baseURL = process.env.NODE_ENV === 'production' 
+  ? 'https://jhoer-soccerbook-cmcre0g5ffd5augt.eastus2-01.azurewebsites.net' 
+  : 'http://localhost:3000';
+axios.defaults.baseURL = baseURL;
 
 // Configuración de interceptores de Axios para manejar errores globalmente
 axios.interceptors.response.use(
   response => response,
   error => {
-    // Manejar errores globalmente (ej. 401, 500, etc.)
     if (error.response && error.response.status === 401) {
-      // Si la respuesta es 401 (no autorizado), se puede hacer logout
       store.dispatch('logout');
     }
     return Promise.reject(error);
@@ -37,15 +38,15 @@ app.use(store);
 // Registrar el componente FontAwesome de forma global
 app.component('font-awesome-icon', FontAwesomeIcon);
 
-// Verificar autenticación al cargar la aplicación (esto se hace después de montar la app)
+// Verificar autenticación al cargar la aplicación
 app.mount('#app');
 
-// Cuando la app se haya montado, verificar el estado de autenticación
+// Comprobación del estado de autenticación al montar la app
 app.config.globalProperties.$mounted = false;
 app.mixin({
   mounted() {
     if (!this.$mounted) {
-      this.$store.dispatch('checkAuth'); // Verificar autenticación después de montar
+      this.$store.dispatch('checkAuth');
       this.$mounted = true;
     }
   }
