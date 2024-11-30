@@ -1,81 +1,100 @@
 <template>
   <div class="user-management">
-
-    <!-- Formulario de creación de usuario -->
-    <form @submit.prevent="createUser" autocomplete="on" class="form-container">
-      <h2 class="subtitle">Crear Usuario</h2>
-      <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input type="text" v-model="user.nombre" required class="input" autocomplete="name" />
-      </div>
-      <div class="form-group">
-        <label for="correo">Correo</label>
-        <input type="email" v-model="user.correo" required class="input" autocomplete="email" />
-      </div>
-      <div class="form-group">
-        <label for="password">Contraseña</label>
-        <input type="password" v-model="user.password" required class="input" autocomplete="new-password" />
-      </div>
-      <div class="form-group">
-        <label for="role">Rol</label>
-        <select v-model="user.role" class="select">
-          <option value="usuario">Usuario</option>
-          <option value="administrador">Administrador</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="foto">Foto de Perfil</label>
-        <input type="file" @change="onFileChange" class="file-input" />
-      </div>
-      <button type="submit" class="button primary">Crear Usuario</button>
-    </form>
-
-    <!-- Formulario de actualización de usuario -->
-    <form v-if="editingUser" @submit.prevent="updateUser" autocomplete="on" class="form-container">
-      <h2 class="subtitle">Actualizar Usuario</h2>
-      <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input type="text" v-model="editingUser.nombre" required class="input" autocomplete="name" />
-      </div>
-      <div class="form-group">
-        <label for="correo">Correo</label>
-        <input type="email" v-model="editingUser.correo" required class="input" autocomplete="email" />
-      </div>
-      <div class="form-group">
-        <label for="password">Contraseña</label>
-        <input type="password" v-model="editingUser.password" class="input" autocomplete="new-password" />
-      </div>
-      <div class="form-group">
-        <label for="role">Rol</label>
-        <select v-model="editingUser.role" class="select">
-          <option value="usuario">Usuario</option>
-          <option value="administrador">Administrador</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="foto">Foto de Perfil</label>
-        <input type="file" @change="onFileChangeUpdate" class="file-input" />
-      </div>
-      <button type="submit" class="button primary">Actualizar Usuario</button>
-    </form>
-
-    <!-- Lista de usuarios -->
-    <h2 class="subtitle">Usuarios Registrados</h2>
-    <div v-if="users.length === 0" class="no-users">No hay usuarios registrados.</div>
-    <ul class="user-list">
-      <li v-for="user in users" :key="user.id" class="user-card">
+    <h2>Gestión de Usuarios</h2>
+    
+    <!-- Crear usuario -->
+    <div class="create-user">
+      <h3>Crear Usuario</h3>
+      <form @submit.prevent="createUser">
         <div>
-          <p class="user-name"><strong>{{ user.nombre }}</strong></p>
-          <p class="user-email">{{ user.correo }}</p>
-          <p class="user-role">{{ user.role }}</p>
-          <img v-if="user.foto" :src="'data:image/jpeg;base64,' + user.foto" alt="Foto de perfil" class="user-photo" />
+          <label for="nombre">Nombre:</label>
+          <input v-model="newUser.nombre" type="text" id="nombre" required />
         </div>
-        <div class="actions">
-          <button @click="deleteUser(user.id)" class="button danger">Eliminar</button>
-          <button @click="editUser(user)" class="button secondary">Editar</button>
+        <div>
+          <label for="correo">Correo:</label>
+          <input v-model="newUser.correo" type="email" id="correo" required />
         </div>
-      </li>
-    </ul>
+        <div>
+          <label for="password">Contraseña:</label>
+          <input v-model="newUser.password" type="password" id="password" required />
+        </div>
+        <div>
+          <label for="role">Rol:</label>
+          <select v-model="newUser.role" id="role" required>
+            <option value="usuario">Usuario</option>
+            <option value="admin">Administrador</option>
+            <option value="cliente">cliente</option>
+          </select>
+        </div>
+        <div>
+          <label for="foto">Foto de perfil:</label>
+          <input type="file" @change="handleFileUpload" id="foto" />
+        </div>
+        <button type="submit">Crear Usuario</button>
+      </form>
+    </div>
+
+    <!-- Mostrar usuarios -->
+    <div class="user-list">
+      <h3>Lista de Usuarios</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Rol</th>
+            <th>Foto</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="user in users" :key="user.id">
+            <td>{{ user.nombre }}</td>
+            <td>{{ user.correo }}</td>
+            <td>{{ user.role }}</td>
+            <td v-if="user.foto">
+              <img :src="'data:image/jpeg;base64,' + user.foto" alt="Foto" width="50" height="50" />
+            </td>
+            <td>
+              <button @click="deleteUser(user.id)">Eliminar</button>
+              <button @click="editUser(user.id)">Editar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Editar usuario -->
+    <div v-if="editingUser" class="edit-user">
+      <h3>Editar Usuario</h3>
+      <form @submit.prevent="updateUser">
+        <div>
+          <label for="edit-nombre">Nombre:</label>
+          <input v-model="editingUser.nombre" type="text" id="edit-nombre" required />
+        </div>
+        <div>
+          <label for="edit-correo">Correo:</label>
+          <input v-model="editingUser.correo" type="email" id="edit-correo" required />
+        </div>
+        <div>
+          <label for="edit-password">Contraseña:</label>
+          <input v-model="editingUser.password" type="password" id="edit-password" />
+        </div>
+        <div>
+          <label for="edit-role">Rol:</label>
+          <select v-model="editingUser.role" id="edit-role" required>
+            <option value="usuario">Usuario</option>
+            <option value="admin">Administrador</option>
+            <option value="cliente">cliente</option>
+          </select>
+        </div>
+        <div>
+          <label for="edit-foto">Foto de perfil:</label>
+          <input type="file" @change="handleFileUpload" id="edit-foto" />
+        </div>
+        <button type="submit">Actualizar Usuario</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -85,7 +104,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      user: {
+      newUser: {
         nombre: '',
         correo: '',
         password: '',
@@ -96,250 +115,160 @@ export default {
       editingUser: null,
     };
   },
+  created() {
+    this.fetchUsers();
+  },
   methods: {
+    async createUser() {
+      try {
+        const formData = new FormData();
+        formData.append('nombre', this.newUser.nombre);
+        formData.append('correo', this.newUser.correo);
+        formData.append('password', this.newUser.password);
+        formData.append('role', this.newUser.role);
+        if (this.newUser.foto) {
+          formData.append('foto', this.newUser.foto);
+        }
+
+        const response = await axios.post('/api/admin/usuarios', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+
+        // Agregar el nuevo usuario a la lista
+        this.users.push(response.data);
+        this.resetForm();
+        alert('Usuario creado exitosamente');
+      } catch (error) {
+        console.error(error);
+        alert('Error al crear el usuario');
+      }
+    },
+
     async fetchUsers() {
       try {
         const response = await axios.get('/api/admin/usuarios');
         this.users = response.data;
       } catch (error) {
-        console.error('Error al obtener usuarios:', error);
+        console.error(error);
+        alert('Error al obtener los usuarios');
       }
     },
 
-    onFileChange(event) {
+    handleFileUpload(event) {
       const file = event.target.files[0];
       if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.user.foto = reader.result.split(',')[1]; // Convertir imagen a base64
-        };
-        reader.readAsDataURL(file);
-      }
-    },
-
-    onFileChangeUpdate(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.editingUser.foto = reader.result.split(',')[1]; // Convertir imagen a base64
-        };
-        reader.readAsDataURL(file);
-      }
-    },
-
-    async createUser() {
-      const confirmation = confirm('¿Estás seguro de que deseas crear este usuario?');
-      if (confirmation) {
-        try {
-          const formData = new FormData();
-          formData.append('nombre', this.user.nombre);
-          formData.append('correo', this.user.correo);
-          formData.append('password', this.user.password);
-          formData.append('role', this.user.role);
-          if (this.user.foto) {
-            const base64Image = this.user.foto.split(',')[1]; // Convertir imagen base64
-            formData.append('foto', base64Image);
-          }
-
-          await axios.post('/api/admin/usuarios', formData);
-          this.fetchUsers();
-          this.resetForm();
-          alert('Usuario creado con éxito.');
-        } catch (error) {
-          console.error('Error al crear el usuario:', error);
-          alert('Hubo un error al crear el usuario.');
-        }
-      }
-    },
-
-    async updateUser() {
-      const confirmation = confirm('¿Estás seguro de que deseas actualizar este usuario?');
-      if (confirmation) {
-        try {
-          const formData = new FormData();
-          formData.append('nombre', this.editingUser.nombre);
-          formData.append('correo', this.editingUser.correo);
-          if (this.editingUser.password) {
-            formData.append('password', this.editingUser.password);
-          }
-          formData.append('role', this.editingUser.role);
-          if (this.editingUser.foto) {
-            const base64Image = this.editingUser.foto.split(',')[1];
-            formData.append('foto', base64Image);
-          }
-
-          await axios.put(`/api/admin/usuarios/${this.editingUser.id}`, formData);
-          this.fetchUsers();
-          this.editingUser = null;
-          alert('Usuario actualizado con éxito.');
-        } catch (error) {
-          console.error('Error al actualizar el usuario:', error);
-          alert('Hubo un error al actualizar el usuario.');
-        }
+        this.newUser.foto = file;
       }
     },
 
     async deleteUser(id) {
-      const confirmation = confirm('¿Estás seguro de que deseas eliminar este usuario?');
-      if (confirmation) {
-        try {
-          await axios.delete(`/api/admin/usuarios/${id}`);
-          this.fetchUsers();
-          alert('Usuario eliminado con éxito.');
-        } catch (error) {
-          console.error('Error al eliminar el usuario:', error);
-          alert('Hubo un error al eliminar el usuario.');
-        }
+      try {
+        await axios.delete(`/api/admin/usuarios/${id}`);
+        this.users = this.users.filter(user => user.id !== id);
+        alert('Usuario eliminado');
+      } catch (error) {
+        console.error(error);
+        alert('Error al eliminar el usuario');
       }
     },
 
-    editUser(user) {
-      this.editingUser = { ...user };
+    editUser(id) {
+      this.editingUser = { ...this.users.find(user => user.id === id) };
+    },
+
+    async updateUser() {
+      try {
+        const formData = new FormData();
+        formData.append('nombre', this.editingUser.nombre);
+        formData.append('correo', this.editingUser.correo);
+        formData.append('password', this.editingUser.password);
+        formData.append('role', this.editingUser.role);
+
+        // Si se ha subido una nueva foto, agregarla
+        if (this.editingUser.foto) {
+          formData.append('foto', this.editingUser.foto);
+        } else {
+          // Si no se sube una nueva foto, enviar el valor `null` para no modificar la foto
+          formData.append('foto', null);
+        }
+
+        await axios.put(`/api/admin/usuarios/${this.editingUser.id}`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+
+        this.fetchUsers();
+        this.editingUser = null;
+        alert('Usuario actualizado');
+      } catch (error) {
+        console.error(error);
+        alert('Error al actualizar el usuario');
+      }
     },
 
     resetForm() {
-      this.user = {
+      this.newUser = {
         nombre: '',
         correo: '',
         password: '',
         role: 'usuario',
-        foto: null,
+        foto: '',
       };
     },
-  },
-  mounted() {
-    this.fetchUsers();
   },
 };
 </script>
 
+
 <style scoped>
-/* Variables de colores */
-:root {
-  --primary-color: #42b983;
-  --secondary-color: #3d668f;
-  --danger-color: #e74c3c;
-  --light-gray: #f4f4f4;
-  --dark-gray: #333;
-  --white: #fff;
-}
-
-/* General */
 .user-management {
-  max-width: 800px;
-  margin: 0 auto;
   padding: 20px;
-  background: var(--light-gray);
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.title {
-  text-align: center;
-  color: var(--primary-color);
+.create-user, .edit-user {
   margin-bottom: 20px;
 }
 
-.subtitle {
-  color: var(--secondary-color);
-  margin-bottom: 10px;
+.create-user form, .edit-user form {
+  display: grid;
+  grid-gap: 10px;
 }
 
-/* Formularios */
-.form-container {
-  background: var(--white);
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.create-user label, .edit-user label {
+  font-weight: bold;
 }
 
-.form-group {
-  margin-bottom: 15px;
-}
-
-.input,
-.select,
-.file-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--dark-gray);
-  border-radius: 4px;
-  outline: none;
-}
-
-.input:focus,
-.select:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 3px var(--primary-color);
-}
-
-.button {
+.create-user button, .edit-user button {
   padding: 10px 20px;
+  background-color: #42b983;
+  color: white;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
-.button.primary {
-  background-color: var(--primary-color);
-  color: var(--white);
+.create-user button:hover, .edit-user button:hover {
+  background-color: #3d668f;
 }
 
-.button.primary:hover {
-  background-color: var(--secondary-color);
+.user-list table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.button.secondary {
-  background-color: var(--secondary-color);
-  color: var(--white);
+.user-list th, .user-list td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
-.button.secondary:hover {
-  background-color: var(--primary-color);
+.user-list th {
+  background-color: #f4f4f4;
 }
 
-.button.danger {
-  background-color: var(--danger-color);
-  color: var(--white);
-}
-
-.button.danger:hover {
-  background-color: darken(var(--danger-color), 10%);
-}
-
-/* Lista de usuarios */
-.user-list {
-  list-style: none;
-  padding: 0;
-}
-
-.user-card {
-  background: var(--white);
-  padding: 15px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.user-name {
-  color: var(--dark-gray);
-}
-
-.user-photo {
-  width: 50px;
-  height: 50px;
+.user-list img {
   border-radius: 50%;
-  object-fit: cover;
-}
-
-.actions {
-  display: flex;
-  gap: 10px;
 }
 </style>
