@@ -1,21 +1,19 @@
 <template>
-  <div class="profile-container" ref="profileContainer">
-    <!-- Imagen de perfil con clic para abrir/cerrar el menú -->
+  <div class="profile-container">
     <div class="perfil-circle" @click="toggleDropdown">
-      <img :src="user && user.fotoBase64 ? 'data:image/jpeg;base64,' + user.fotoBase64 : defaultAvatar" alt="Foto de perfil" class="profile-image"/>
+      <img :src="user.fotoBase64 ? 'data:image/jpeg;base64,' + user.fotoBase64 : defaultAvatar" alt="Foto de perfil" class="profile-image" />
     </div>
 
-    <!-- Menú desplegable con información del perfil -->
     <div v-if="isDropdownOpen" class="perfil-dropdown-menu">
       <div class="perfil-circle-dropdown">
-        <img :src="user && user.fotoBase64 ? 'data:image/jpeg;base64,' + user.fotoBase64 : defaultAvatar" alt="Foto de perfil" />
+        <img :src="user.fotoBase64 ? 'data:image/jpeg;base64,' + user.fotoBase64 : defaultAvatar" alt="Foto de perfil" />
       </div>
 
-      <div class="perfil-info" v-if="user">
-        <p><strong>Bienvenido</strong> {{ user.nombre }}</p>
-        <p><strong>Correo</strong> {{ user.correo }}</p>
-        <p>El mejor {{ user.role }}</p>
-        <button @click="editProfileImage">Actualizar Foto de Perfil</button>
+      <div class="perfil-info">
+        <p><strong>Bienvenido:</strong> {{ user.nombre }}</p>
+        <p><strong>Correo:</strong> {{ user.correo }}</p>
+        <p><strong>Rol:</strong> {{ user.role }}</p>
+        <button @click="editProfileImage">Actualizar Foto</button>
       </div>
 
       <div class="reservas-section">
@@ -28,17 +26,11 @@
           </li>
         </ul>
         <p v-else>No tienes reservas registradas.</p>
-        
-        <!-- Nuevas funcionalidades de reserva -->
-        <button @click="navigateToReservas">Ver todas las reservas</button>
-        <button @click="navigateToNewReserva">Hacer una nueva reserva</button>
-        <button @click="navigateToEditReserva">Editar reserva</button>
       </div>
 
-      <button class="logout-button" @click="handleLogout">Cerrar Sesión</button>
+      <button @click="handleLogout">Cerrar Sesión</button>
     </div>
 
-    <!-- Input invisible para actualizar la foto de perfil -->
     <input type="file" ref="fileInput" style="display: none" @change="handleFileUpload" />
   </div>
 </template>
@@ -49,81 +41,88 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      user: {},  // Inicialización vacía en lugar de null
+      user: {
+        fotoBase64: '', 
+        nombre: '', 
+        correo: '', 
+        role: '', 
+      },
       reservas: [],
-      defaultAvatar: 'https://via.placeholder.com/150', // Avatar por defecto
-      isDropdownOpen: false, // Estado para manejar la visibilidad del menú desplegable
+      isDropdownOpen: false,
+      defaultAvatar: 'https://via.placeholder.com/150',
     };
   },
   methods: {
     async fetchUserData() {
       try {
-        const response = await axios.get('/api/profile/perfil', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+        const response = await axios.get('/api/profile/user', {
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        });
         this.user = response.data.data;
       } catch (error) {
-        console.error("Error al obtener los datos del usuario:", error);
+        console.error('Error al obtener los datos del usuario:', error);
       }
     },
-
     async fetchUserReservas() {
       try {
-        const response = await axios.get('/api/profile/reservas', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+        const response = await axios.get('/api/profile/user/reservas', {
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        });
         this.reservas = response.data.data;
       } catch (error) {
-        console.error("Error al obtener las reservas:", error);
+        console.error('Error al obtener las reservas:', error);
       }
     },
-
-    async editProfileImage() {
+    editProfileImage() {
       this.$refs.fileInput.click();
     },
-
     handleFileUpload(event) {
       const file = event.target.files[0];
       const formData = new FormData();
       formData.append('image', file);
 
-      axios.post('/api/profile/perfil/foto', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      })
-      .then(() => {
-        this.fetchUserData(); // Actualiza los datos del usuario después de cambiar la foto
-      })
-      .catch(error => {
-        console.error('Error al actualizar la foto de perfil:', error);
-      });
+      axios
+        .post('/api/profile/user/update-image', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        })
+        .then(() => this.fetchUserData())
+        .catch((error) => console.error('Error al actualizar la foto de perfil:', error));
     },
-
     toggleDropdown() {
-      this.isDropdownOpen = !this.isDropdownOpen; // Alternar el menú desplegable
+      this.isDropdownOpen = !this.isDropdownOpen;
     },
-
     handleLogout() {
-      localStorage.removeItem('token'); // Eliminar token del almacenamiento local
-      this.$router.push('/login'); // Redirigir al login
+      localStorage.removeItem('token');
+      this.$router.push('/login');
     },
-
-    navigateToReservas() {
-      this.$router.push('/reservas'); // Redirige a la página de reservas
-    },
-
-    navigateToNewReserva() {
-      this.$router.push('/nueva-reserva'); // Redirige a la página de nueva reserva
-    },
-
-    navigateToEditReserva() {
-      this.$router.push('/editar-reserva'); // Redirige a la página de editar reserva
-    }
   },
   mounted() {
     this.fetchUserData();
     this.fetchUserReservas();
-  }
+  },
 };
 </script>
+
+<style scoped>
+/* Agrega tus estilos personalizados aquí */
+.profile-container {
+  position: relative;
+}
+.perfil-circle {
+  cursor: pointer;
+}
+.perfil-dropdown-menu {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+</style>
+
 
 <style scoped>
 .profile-container {

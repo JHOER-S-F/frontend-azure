@@ -66,34 +66,7 @@ export default {
       user: 'getUser', // Obtener información del usuario desde Vuex
     }),
   },
-  watch: {
-    user: {
-      immediate: true,
-      handler(newUser) {
-        if (newUser) {
-          this.name = newUser.nombre || ''; // Asegúrate de que el nombre se llame "nombre" en tu store
-          this.email = newUser.correo || ''; // Asegúrate de que el correo se llame "correo" en tu store
-        }
-      },
-    },
-  },
-  created() {
-    this.fetchUser(); // Llama a la función para obtener el usuario al crear el componente
-  },
   methods: {
-    async fetchUser() {
-      try {
-        const response = await axios.get('/api/auth/user', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        });
-        this.$store.commit('SET_USER', response.data);
-      } catch (error) {
-        console.error('Error al obtener la información del usuario:', error);
-        // No redirigimos a /login para permitir el acceso a la sección de contacto
-      }
-    },
     toggleForm() {
       this.showForm = !this.showForm;
     },
@@ -108,8 +81,8 @@ export default {
 
       try {
         const response = await axios.post('/api/cam/contact', {
-          name: this.user ? this.user.nombre : this.name, // Utiliza el nombre autenticado si está presente
-          email: this.user ? this.user.correo : this.email, // Utiliza el correo autenticado si está presente
+          name: this.user ? this.user.nombre : this.name,
+          email: this.user ? this.user.correo : this.email,
           message: this.message,
         });
 
@@ -132,6 +105,7 @@ export default {
   },
 };
 </script>
+
 
 
 

@@ -1,12 +1,13 @@
 const mysql = require('mysql2/promise');  // Usar la versión de promesas de mysql2
+require('dotenv').config();
 const fs = require('fs');
 
 // Configura el pool de conexiones a MySQL
 const pool = mysql.createPool({
-  host: "jhoer-soccerbook-server.mysql.database.azure.com",
-  user: "eqqbleprjd",
-  password: "gduRTpCC5D8s$do4", // Tu contraseña
-  database: "reservas_futbol", // Tu base de datos
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "", // Tu contraseña
+  database: process.env.DB_NAME || "reservas_futbol", // Tu base de datos
   port: 3306,
   ssl: {
     ca: fs.readFileSync(__dirname + "/../certs/DigiCertGlobalRootG2.crt.pem"), // Ruta al certificado

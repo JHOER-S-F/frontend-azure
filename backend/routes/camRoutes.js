@@ -1,9 +1,9 @@
-// camRoutes.js
 const express = require('express');
 const router = express.Router();
-const cam = require('../controllers/camController');
+const { saveContactMessage } = require('../controllers/camController');
 
-// Ruta para enviar un mensaje de contacto
-router.post('/contact', cam.sendContactMessage);
+// Ruta para guardar el mensaje de contacto
+router.post('/contact', saveContactMessage);
 
 module.exports = router;
+

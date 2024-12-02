@@ -1,21 +1,45 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const profileController = require('../controllers/profileController');
-const verifyToken = require('../middleware/verifyToken');
-const multerErrorHandling = require('../controllers/profileController').multerErrorHandling;
+const jwt = require("jsonwebtoken");
+const {
+  getUser,
+  updateProfileImage,
+  getUserReservas,
+  upload,
+  multerErrorHandling,
+} = require("../controllers/profileController");
 
-// Verificar el token para proteger las rutas de perfil
-router.use(verifyToken);
+// Middleware para verificar el token JWT
+const authenticateToken = (req, res, next) => {
+  const token = req.headers["authorization"]?.split(" ")[1];  // Obtener el token del header Authorization
 
-// Obtener los datos del perfil del usuario
-router.get('/perfil', profileController.getUser);
+  if (!token) {
+    return res.status(401).json({ message: "No autorizado, token no proporcionado" });
+  }
 
-// Obtener las reservas del usuario
-router.get('/reservas', profileController.getUserReservas);
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) {
+      return res.status(403).json({ message: "Token inválido o expirado" });
+    }
+    req.userId = user.id;  // Asignar el id del usuario al objeto req para usarlo en los controladores
+    next();
+  });
+};
 
-// Subir una nueva foto de perfil
-router.post('/perfil/foto', profileController.upload, multerErrorHandling, profileController.updateProfileImage);
+// Ruta para obtener información del usuario autenticado
+router.get("/user", authenticateToken, getUser);
+
+// Ruta para obtener las reservas del usuario autenticado
+router.get("/user/reservas", authenticateToken, getUserReservas);
+
+// Ruta para actualizar la foto de perfil del usuario autenticado
+router.post(
+  "/user/update-image",
+  authenticateToken,  // Añadir la protección para la foto de perfil
+  upload,
+  multerErrorHandling,
+  updateProfileImage
+);
 
 module.exports = router;
-
 
