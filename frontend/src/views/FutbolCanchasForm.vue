@@ -63,18 +63,6 @@
           <label for="horaFin">SALIDA</label>
           <input type="time" v-model="horaFin" id="horaFin" required class="input"/>
         </div>
-        <div class="campo-formulario">
-  <label for="nombreCliente">SU NOMBRE</label>
-  <input 
-    type="text" 
-    v-model="nombreCliente" 
-    placeholder="Escribe tu nombre" 
-    id="nombreCliente" 
-    readonly 
-    class="input"
-  />
-</div>
-
         <button type="submit" class="boton-reservar">REALIZAR RESERVA</button>
       </form>
     </div>
@@ -100,7 +88,6 @@ export default {
       fecha: '',
       horaInicio: '',
       horaFin: '',
-      nombreCliente: '',  // Esto será el nombre del usuario autenticado
       reservaExito: false,
       selectedClient: null, 
       isClientDropdownOpen: false, 
@@ -111,15 +98,11 @@ export default {
       user: 'getUser',  // Obtiene el usuario autenticado desde Vuex
     }),
   },
-  created() {
-    this.getClientes(); 
-    this.nombreCliente = this.user.nombre;  // Asigna el nombre del usuario autenticado al cargar el componente
-  },
   methods: {
     async getClientes() {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get('/api/reservas/getClientes', {
+        const response = await axios.get('/api/reservas/Clientes', {
           headers: { Authorization: `Bearer ${token}` }
         });
         this.clientes = response.data;
@@ -129,7 +112,7 @@ export default {
           this.getCanchas(); 
         }
       } catch (error) {
-        console.error('Error al obtener los clientes:', error);
+        console.error("Error al cargar clientes:", error);
       }
     },
     toggleClientDropdown() {
@@ -144,7 +127,7 @@ export default {
     async getCanchas() {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get(`/api/reservas/getCanchas?cliente_id=${this.clienteSeleccionado}`, {
+        const response = await axios.get(`/api/reservas/canchas?cliente_id=${this.clienteSeleccionado}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         this.canchas = response.data;
@@ -159,15 +142,15 @@ export default {
     async reservarCancha() {
       const token = localStorage.getItem('token');
       const reserva = {
-        cancha_id: this.canchaSeleccionada.id,
+        clienteId: this.selectedClient.id,
+        canchaId: this.canchaSeleccionada.id,
         fecha: this.fecha,
-        hora_inicio: this.horaInicio,
-        hora_fin: this.horaFin,
-        nombre_cliente: this.nombreCliente
+        horaInicio: this.horaInicio,
+        horaFin: this.horaFin,
       };
 
       try {
-        await axios.post('/api/reservas/makeReserva', reserva, {
+        await axios.post('/api/reservas/reservas', reserva, {
           headers: { Authorization: `Bearer ${token}` }
         });
         this.reservaExito = true; 
@@ -181,11 +164,14 @@ export default {
       this.horaInicio = '';
       this.horaFin = '';
       this.canchaSeleccionada = null;
-      this.nombreCliente = this.user.nombre;  // Restablece el nombre del usuario autenticado después de la reserva
     }
+  },
+  mounted() {
+    this.getClientes(); // Llamar a la función para obtener clientes al montar el componente
   }
 };
 </script>
+
 
 
 

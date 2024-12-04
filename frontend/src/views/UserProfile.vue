@@ -10,9 +10,9 @@
       </div>
 
       <div class="perfil-info">
-        <p><strong>Bienvenido:</strong> {{ user.nombre }}</p>
-        <p><strong>Correo:</strong> {{ user.correo }}</p>
-        <p><strong>Rol:</strong> {{ user.role }}</p>
+        <p><strong>Bienvenido:</strong> <br> {{ user.nombre }}</p>
+        <p><strong>Correo:</strong> <br> {{ user.correo }}</p>
+        <p><strong>El mejor:</strong> <br> {{ user.role }}</p>
         <button @click="editProfileImage">Actualizar Foto</button>
       </div>
 

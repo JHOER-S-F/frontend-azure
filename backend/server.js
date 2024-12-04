@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 app.use('/api/profile', profileRouter) //ruta del perfil
 app.use('/api/admin', adminRoutes); //rutas de administardor 
 app.use('/api/auth', authRoutes); // Rutas de autenticación
-app.use('/api/reservas', verifyToken, reservaRoutes); // Rutas protegidas para reservas
+app.use('/api/reservas', reservaRoutes); // Rutas protegidas para reservas
 app.use('/api/cam', camRoutes); // Rutas para mensajes de contacto
 
 // Sirviendo el frontend en producción
