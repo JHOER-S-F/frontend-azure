@@ -13,6 +13,7 @@
             <th>Hora Inicio</th>
             <th>Hora Fin</th>
             <th>Cliente</th>
+            <th>Usuario</th>
             <th>Fecha de Creación</th>
             <th>Acciones</th>
           </tr>
@@ -25,6 +26,7 @@
             <td>{{ reserva.hora_inicio }}</td>
             <td>{{ reserva.hora_fin }}</td>
             <td>{{ reserva.nombre_cliente }}</td>
+            <td>{{ reserva.nombre_usuario }}</td>
             <td>{{ reserva.fecha_creacion }}</td>
             <td>
               <button class="btn btn-editar" @click="editReserva(reserva.id)">Editar</button>
@@ -56,31 +58,36 @@
           <input type="time" id="hora_fin" v-model="form.hora_fin" required />
         </div>
         <div class="campo">
-          <label for="nombre_cliente">Nombre Cliente:</label>
-          <input type="text" id="nombre_cliente" v-model="form.nombre_cliente" required />
+          <label for="cliente_id">Cliente:</label>
+          <select id="cliente_id" v-model="form.cliente_id" required>
+            <option v-for="cliente in clientes" :value="cliente.id" :key="cliente.id">{{ cliente.nombre }}</option>
+          </select>
         </div>
         <button class="btn btn-actualizar" type="submit">Actualizar Reserva</button>
       </form>
     </div>
+
   </div>
 </template>
-
 
 <script>
 export default {
   data() {
     return {
       reservas: [],
+      clientes: [],  // Lista de clientes para el select
       form: {
         id: null,
         cancha_id: '',
         fecha: '',
         hora_inicio: '',
         hora_fin: '',
-        nombre_cliente: '',
+        cliente_id: '',  // Usamos cliente_id en lugar de nombre_cliente
       },
       isEditMode: false,
       formTitle: 'Editar Reserva',
+      successMessage: '',  // Mensaje de éxito
+      errorMessage: '',  // Mensaje de error
     };
   },
   methods: {
@@ -88,10 +95,31 @@ export default {
     async loadReservas() {
       try {
         const response = await fetch('/api/admin/reservas');
+        if (!response.ok) {
+          throw new Error('Error al cargar las reservas');
+        }
         const data = await response.json();
         this.reservas = data;
       } catch (error) {
-        console.error('Error al cargar las reservas:', error);
+        console.error(error);
+        this.errorMessage = 'Hubo un problema al cargar las reservas.';
+        alert(this.errorMessage); // Alerta de error
+      }
+    },
+
+    // Cargar la lista de clientes
+    async loadClientes() {
+      try {
+        const response = await fetch('/api/admin/clientes');
+        if (!response.ok) {
+          throw new Error('Error al cargar los clientes');
+        }
+        const data = await response.json();
+        this.clientes = data;
+      } catch (error) {
+        console.error(error);
+        this.errorMessage = 'Hubo un problema al cargar los clientes.';
+        alert(this.errorMessage); // Alerta de error
       }
     },
 
@@ -99,12 +127,17 @@ export default {
     async editReserva(id) {
       try {
         const response = await fetch(`/api/admin/reservas/${id}`);
+        if (!response.ok) {
+          throw new Error('Error al obtener la reserva');
+        }
         const data = await response.json();
-        this.form = { ...data };
+        this.form = { ...data };  // Asignamos todos los datos
         this.isEditMode = true;
         this.formTitle = 'Editar Reserva';
       } catch (error) {
-        console.error('Error al obtener la reserva:', error);
+        console.error(error);
+        this.errorMessage = 'Hubo un problema al obtener los datos de la reserva.';
+        alert(this.errorMessage); // Alerta de error
       }
     },
 
@@ -122,14 +155,19 @@ export default {
         });
 
         if (response.ok) {
+          this.successMessage = 'Reserva actualizada correctamente.';
+          alert(this.successMessage); // Alerta de éxito
           this.resetForm();
           this.loadReservas();
         } else {
           const data = await response.json();
-          console.error('Error al actualizar la reserva:', data.error);
+          this.errorMessage = data.error || 'Hubo un problema al actualizar la reserva.';
+          alert(this.errorMessage); // Alerta de error
         }
       } catch (error) {
-        console.error('Error al enviar los datos:', error);
+        console.error(error);
+        this.errorMessage = 'Hubo un problema al enviar los datos.';
+        alert(this.errorMessage); // Alerta de error
       }
     },
 
@@ -141,13 +179,18 @@ export default {
         });
 
         if (response.ok) {
+          this.successMessage = 'Reserva eliminada correctamente.';
+          alert(this.successMessage); // Alerta de éxito
           this.loadReservas();
         } else {
           const data = await response.json();
-          console.error('Error al eliminar la reserva:', data.error);
+          this.errorMessage = data.error || 'Hubo un problema al eliminar la reserva.';
+          alert(this.errorMessage); // Alerta de error
         }
       } catch (error) {
-        console.error('Error al eliminar la reserva:', error);
+        console.error(error);
+        this.errorMessage = 'Hubo un problema al eliminar la reserva.';
+        alert(this.errorMessage); // Alerta de error
       }
     },
 
@@ -159,7 +202,7 @@ export default {
         fecha: '',
         hora_inicio: '',
         hora_fin: '',
-        nombre_cliente: '',
+        cliente_id: '',
       };
       this.isEditMode = false;
       this.formTitle = 'Editar Reserva';
@@ -167,9 +210,14 @@ export default {
   },
   mounted() {
     this.loadReservas();
+    this.loadClientes();  // Cargamos la lista de clientes
   },
 };
 </script>
+
+
+
+
 
 <style scoped>
 /* Estilos generales */

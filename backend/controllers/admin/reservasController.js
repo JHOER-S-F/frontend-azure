@@ -4,9 +4,11 @@ const pool = require('../../config/db');
 exports.getReservas = async (req, res) => {
     try {
         const [results] = await pool.query(
-            'SELECT r.id, r.fecha, r.hora_inicio, r.hora_fin, r.nombre_cliente, r.fecha_creacion, c.nombre AS nombre_cancha ' +
+            'SELECT r.id, r.fecha, r.hora_inicio, r.hora_fin, r.fecha_creacion, c.nombre AS nombre_cancha, cli.nombre AS nombre_cliente, usu.nombre AS nombre_usuario ' +
             'FROM reservas r ' +
-            'JOIN canchas c ON r.cancha_id = c.id'
+            'JOIN canchas c ON r.cancha_id = c.id ' +
+            'JOIN clientes cli ON r.cliente_id = cli.id ' +  // Unimos la tabla clientes para obtener el nombre del cliente
+            'JOIN usuarios usu ON r.usuario_id = usu.id'     // Unimos la tabla usuarios para obtener el nombre del usuario
         );
         res.status(200).json(results);
     } catch (error) {
@@ -20,9 +22,11 @@ exports.getReservaById = async (req, res) => {
     const { id } = req.params;
     try {
         const [results] = await pool.query(
-            'SELECT r.id, r.fecha, r.hora_inicio, r.hora_fin, r.nombre_cliente, r.fecha_creacion, c.nombre AS nombre_cancha ' +
+            'SELECT r.id, r.fecha, r.hora_inicio, r.hora_fin, r.fecha_creacion, c.nombre AS nombre_cancha, cli.nombre AS nombre_cliente, usu.nombre AS nombre_usuario ' +
             'FROM reservas r ' +
             'JOIN canchas c ON r.cancha_id = c.id ' +
+            'JOIN clientes cli ON r.cliente_id = cli.id ' + // Unimos también la tabla clientes
+            'JOIN usuarios usu ON r.usuario_id = usu.id ' + // Unimos la tabla usuarios
             'WHERE r.id = ?',
             [id]
         );
@@ -39,7 +43,7 @@ exports.getReservaById = async (req, res) => {
 // Actualizar una reserva
 exports.updateReserva = async (req, res) => {
     const { id } = req.params;
-    const { cancha_id, fecha, hora_inicio, hora_fin, nombre_cliente } = req.body;
+    const { cancha_id, fecha, hora_inicio, hora_fin, cliente_id } = req.body; // Cambié nombre_cliente por cliente_id
     try {
         const [reserva] = await pool.query('SELECT * FROM reservas WHERE id = ?', [id]);
         if (!reserva.length) {
@@ -48,8 +52,8 @@ exports.updateReserva = async (req, res) => {
 
         // Actualizar la reserva
         await pool.query(
-            'UPDATE reservas SET cancha_id = ?, fecha = ?, hora_inicio = ?, hora_fin = ?, nombre_cliente = ? WHERE id = ?',
-            [cancha_id, fecha, hora_inicio, hora_fin, nombre_cliente, id]
+            'UPDATE reservas SET cancha_id = ?, fecha = ?, hora_inicio = ?, hora_fin = ?, cliente_id = ? WHERE id = ?',
+            [cancha_id, fecha, hora_inicio, hora_fin, cliente_id, id] // Cambié nombre_cliente por cliente_id
         );
         res.status(200).json({ message: 'Reserva actualizada' });
     } catch (error) {
