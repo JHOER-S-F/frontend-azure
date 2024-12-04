@@ -7,10 +7,11 @@
 
 /* Paleta de colores */
 :root {
-  --color-primario: #78eb14; /* Verde */
-  --color-secundario: #e3eb14; /* Amarillo */
-  --color-terciario: #407cc6; /* Azul oscuro */
+  --color-verde: #72df14; /* Verde */
+  --color-amarillo: #e3eb14; /* Amarillo */
+  --color-azul: #5886be;
   --color-blanco: #ffffff; /* Blanco */
+  --color-gris: #818181;/* Gris */
   --color-negro: #000000; /* Negro */
 }
 
@@ -24,7 +25,6 @@ body {
 
 /* Encabezados */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--color-negro); /* Color oscuro para encabezados */
   margin-bottom: 15px;
   line-height: 1.2;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombras suaves */
@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5, h6 {
 p {
   margin-bottom: 20px;
   font-size: 16px;
-  color: #7f8c8d; /* Color gris claro para párrafos */
+  color: #ccc; /* Color gris claro para párrafos */
 }
 
 /* Imágenes */
@@ -65,14 +65,14 @@ input, select, textarea {
 }
 
 input:focus, select:focus, textarea:focus {
-  border-color: var(--color-primario); /* Azul más vibrante en foco */
+  border-color: var(--color-verde); /* Azul más vibrante en foco */
   box-shadow: 0 0 8px rgba(41, 128, 185, 0.5); /* Efecto de foco */
   outline: none;
 }
 
 /* Botones */
 button {
-  background-color: var(--color-secundario); /* Verde para botones */
+  background-color: var(--color-amarillo); /* Amarillo para botones */
   color: var(--color-blanco);
   padding: 10px 20px;
   border: none;
@@ -84,7 +84,7 @@ button {
 }
 
 button:hover {
-  background-color: var(--color-primario); /* Amarillo más oscuro en hover */
+  background-color: var(--color-azul); /* Azul más oscuro en hover */
   transform: scale(1.05); /* Aumento suave en hover */
 }
 
@@ -107,7 +107,7 @@ th, td {
 }
 
 th {
-  background-color: var(--color-terciario); /* Azul oscuro */
+  background-color: var(--color-azul); /* Azul oscuro */
   color: var(--color-blanco);
 }
 
@@ -131,13 +131,13 @@ ul {
 
 ul li {
   margin-left: 10px;
-  color: var(--color-secundario); /* Amarillo para listas no ordenadas */
+  color: var(--color-amarillo); /* Amarillo para listas no ordenadas */
 }
 
 ol li {
   list-style: decimal inside;
   margin-left: 10px;
-  color: var(--color-primario); /* Verde para listas ordenadas */
+  color: var(--color-verde); /* Verde para listas ordenadas */
 }
 
 /* Contenedores flexibles */
@@ -164,7 +164,7 @@ ol li {
 
 /* Footer */
 footer {
-  background-color: var(--color-terciario); /* Color de fondo del pie de página */
+  background-color: var(--color-azul); /* Color de fondo del pie de página */
   color: var(--color-blanco);
   text-align: center;
   padding: 20px;

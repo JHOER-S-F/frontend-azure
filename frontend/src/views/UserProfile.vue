@@ -118,13 +118,16 @@ export default {
   position: absolute;
   background: white;
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
 }
 </style>
 
 
 <style scoped>
+p{
+  color: var(--color-gris);
+}
 .profile-container {
   position: fixed; /* Hace que el contenedor del perfil esté fijo en la pantalla */
   top: 20px; /* Espacio desde la parte superior */
@@ -153,10 +156,10 @@ export default {
   position: absolute;
   top: 100px; /* Ajusta la distancia del menú desplegable desde la imagen de perfil */
   right: 0;
-  background: linear-gradient(135deg, #78EB14, #407cc6);
+  background: linear-gradient(135deg, #dbffbb, #acc7e9);
   border-radius: 15px;
   box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.3);
-  padding: 25px;
+  padding: 15px;
   width: 270px;
   display: flex;
   flex-direction: column;
@@ -169,7 +172,7 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  color: white;
+  
 }
 
 .logout-button {
@@ -205,6 +208,6 @@ button {
 }
 
 .reservas-section li {
-  margin: 10px 0;
+  margin: 5px 0;
 }
 </style>

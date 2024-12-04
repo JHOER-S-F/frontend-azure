@@ -113,6 +113,10 @@ footer {
   transform: translateY(-3px); /* Animación al pasar el mouse */
   text-decoration: underline;
 }
+.btn{
+  background: none;
+}
+
 
 /* Redes sociales */
 .social-media {
@@ -133,7 +137,7 @@ footer {
 }
 
 .social-media a:hover {
-  color: #2aa226; /* Verde bonito */
+  color: #3bdf35; /* Verde bonito */
   transform: scale(1.2); /* Agrandar el icono al pasar el mouse */
 }
 
@@ -157,7 +161,7 @@ footer {
 }
 
 .back-to-top:hover {
-  background-color: ##2aa226;
+  background-color: #2aa226;
   transform: translateY(-5px);
 }
 

@@ -55,8 +55,8 @@ p{
 .selected-client {
   display: flex;
   align-items: center;
-  background: linear-gradient(top, #f2f6f8 0%, #d8e1e7 27%, #b5c6d0 53%, #e0eff9 100%);
-  color: black;
+  background: linear-gradient(135deg, #aaed9d, #dff7da);
+  color: #343434;
   padding: 1rem;
   box-shadow: 6px 7px 22px 1px rgba(87,86,87,0.56);
   border-radius: 12px;
@@ -67,7 +67,7 @@ p{
 }
 
 .selected-client:hover {
-  background: linear-gradient(135deg, #7AE864, #A0EF91);
+  background: linear-gradient(135deg,#dff7da, #aaed9d);
   color: #fff;
   transform: translateY(-4px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
@@ -98,14 +98,14 @@ p{
   list-style: none;
   padding: 0;
   margin-top: 15px;
-  background: linear-gradient(top, #f2f6f8 0%, #d8e1e7 27%, #b5c6d0 53%, #e0eff9 100%);  
+  background: linear-gradient(135deg, #aaed9d, #dff7da);  
   box-shadow: 4px 7px 22px 1px rgba(87,86,87,0.56);
   border-radius: 10px;
   overflow: hidden;
 }
 
 .dropdown-item {
-  background: linear-gradient(top, #f2f6f8 0%, #d8e1e7 27%, #b5c6d0 53%, #e0eff9 100%);
+  background: linear-gradient(135deg, #aaed9d, #dff7da);
   display: flex;
   align-items: center;
   padding: 1rem;
@@ -134,7 +134,7 @@ p{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(top, #f2f6f8 0%, #d8e1e7 27%, #b5c6d0 53%, #e0eff9 100%);  
+  background: linear-gradient(135deg, #aaed9d, #dff7da);  
   color: black;
   padding: 1rem;
   margin-bottom: 15px;
@@ -160,13 +160,13 @@ p{
 }
 
 .boton-reservar:hover {
-  background-color: #1aa907;
+  background-color: var(--color-amarillo);
   transform: translateY(-3px);
 }
 
 /* Formulario de reserva */
 .formulario-reserva {
-  background: linear-gradient(top, #e2f5fe 0%, #d8e1e7 27%, #aabeca 53%, #cae6f8 100%); 
+  background: linear-gradient(135deg, #dbffbb, #acc7e9); 
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 4px 7px 22px 1px rgba(87,86,87,0.56);

@@ -6,7 +6,7 @@ body{
   background-position: center;
   height: 100vh;
   text-align: center;
-  color: white;
+  color: var(--color-verde);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,7 +38,7 @@ body{
   font-family: 'Concert One', serif;
   font-size: 4rem;
   margin-bottom: 2rem;
-  color: var(---color-primario); /* Verde primario */
+  color: var(---color-verde); /* Verde verde */
   letter-spacing: 2px;
   text-transform: uppercase;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra oscura para destacar */

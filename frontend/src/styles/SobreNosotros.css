@@ -11,9 +11,9 @@
   }
   
   h2 {
-    font-family: 'Roboto', sans-serif; /* Fuente más moderna y legible */
+    font-family: 'Concert One', sans-serif; /* Fuente más moderna y legible */
     font-size: 2.5em;
-    color: #1e90ff; /* Azul vibrante */
+    color: var(--color-verde); /* Verde vibrante */
     margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 1px; /* Espaciado para mayor claridad */
@@ -28,7 +28,7 @@
   }
   
   p {
-    font-family: 'Open Sans', sans-serif; /* Fuente más suave y accesible */
+    font-family: 'Dosis', sans-serif; /* Fuente más suave y accesible */
     font-size: 1.2em;
     color: #555;
     margin-bottom: 20px;

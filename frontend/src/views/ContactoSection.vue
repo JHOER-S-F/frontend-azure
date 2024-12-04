@@ -114,7 +114,7 @@ export default {
   max-width: 600px;
   margin: 50px auto;
   padding: 30px;
-  background: linear-gradient(top, #f2f6f8 3%, #c8e3f6 27%, #b8e5ff 53%, #cfe8f9 100%);
+  background: linear-gradient(top, #b8e5ff 53%, #b8e5ff 100%);
   border-radius: 12px;
   box-shadow: 6px 7px 22px 1px rgba(87,86,87,0.56);
   transition: transform 0.3s ease-in-out;
@@ -125,7 +125,7 @@ export default {
 }
 
 .contact-title {
-  color: var(--color-primario);
+  color: var(--color-verde);
   font-size: 30px;
   margin-bottom: 20px;
   font-family: 'Concert One', sans-serif;
@@ -139,27 +139,28 @@ export default {
 }
 
 .contact-link {
-  color: var(--color-secundario);
+  color: var(--color-amarillo);
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
 .contact-link:hover {
-  color: var(--color-terciario);
+  color: var(--color-azul);
 }
 
 .contact-info {
   margin-top: 25px;
   padding: 20px;
-  background-color: #f6f9d0;
+  background-color: #ecece2;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  color: var(--color-gris);
 }
 
 .contact-subtitle {
   font-family: 'Dosis', Serif;
-  color: var(--color-terciario);
+  color: var(--color-azul);
   margin-bottom: 10px;
   font-weight: bold;
 }
@@ -171,7 +172,7 @@ export default {
 .form-label {
   font-family: 'Advent Pro', Sans-Serif;
   font-size: 16px;
-  color: var(--color-secundario);
+  color: var(--color-amarillo);
   margin-bottom: 5px;
   display: block;
   font-weight: 600;
@@ -189,7 +190,7 @@ export default {
 }
 
 .form-input:focus {
-  border-color: var(--color-secundario);
+  border-color: var(--color-amarillo);
   outline: none;
   box-shadow: 0 0 5px rgba(66, 183, 131, 0.5);
 }
@@ -197,7 +198,7 @@ export default {
 .toggle-button {
   margin: 20px 0;
   padding: 10px;
-  background-color: var(--color-primario);
+  background-color: var(--color-verde);
   color: var(--color-blanco);
   border: none;
   border-radius: 6px;
@@ -209,14 +210,14 @@ export default {
 }
 
 .toggle-button:hover {
-  background-color: var(--color-secundario);
+  background-color: var(--color-amarillo);
   transform: scale(1.05);
 }
 
 .submit-button {
   width: 100%;
   padding: 15px;
-  background-color: var(--color-secundario);
+  background-color: var(--color-amarillo);
   color: var(--color-negro);
   border: none;
   border-radius: 6px;
@@ -227,7 +228,7 @@ export default {
 }
 
 .submit-button:hover {
-  background-color: var(--color-primario);
+  background-color: var(--color-verde);
   color: #fff;
   transform: scale(1.05);
 }

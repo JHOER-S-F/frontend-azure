@@ -80,7 +80,7 @@ export default {
 }
 
 h2 {
-  color: var(--color-primario); /* Color del título usando la paleta */
+  color: var(--color-verde); /* Color del título usando la paleta */
   font-size: 28px;
   margin-bottom: 20px;
   font-family: 'Montserrat', sans-serif;
@@ -92,7 +92,7 @@ h2 {
 
 label {
   font-size: 14px;
-  color: var(--color-secundario); /* Color del texto de la etiqueta usando la paleta */
+  color: var(--color-amarillo); /* Color del texto de la etiqueta usando la paleta */
   margin-bottom: 5px;
   display: block;
   text-align: left;
@@ -115,14 +115,14 @@ input {
 }
 
 input:focus {
-  border-color: var(--color-secundario); /* Usar color secundario al enfocar */
+  border-color: var(--color-amarillo); /* Usar color amarillo al enfocar */
   outline: none;
   box-shadow: 0px 0px 8px rgba(0, 128, 0, 0.2); /* Sombra al enfocar */
 }
 
 button {
   padding: 12px;
-  background-color: var(--color-secundario); /* Color de fondo usando la paleta */
+  background-color: var(--color-amarillo); /* Color de fondo usando la paleta */
   color: var(--color-blanco); /* Color de texto usando la paleta */
   border: none;
   cursor: pointer;
@@ -131,7 +131,7 @@ button {
 }
 
 button:hover {
-  background-color: var(--color-terciario); /* Color de fondo al pasar el ratón */
+  background-color: var(--color-azul); /* Color de fondo al pasar el ratón */
   transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
 }
 

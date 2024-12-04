@@ -163,7 +163,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Dosis', sans-serif;
   background-color: #f4f7fa;
   padding: 20px;
 }
@@ -179,6 +179,7 @@ export default {
 
 .dashboard-title {
   text-align: center;
+  font-family: 'Concert One', serif;
   font-size: 2.5rem;
   color: #78EB14;
   margin-bottom: 20px;
@@ -223,7 +224,8 @@ li {
 }
 
 .toggle-button:hover {
-  background-color: #407cc6;
+  background-color: var(--color-amarillo);
+  color: black;
 }
 
 .sidebar {
@@ -263,7 +265,7 @@ li {
 }
 
 .sidebar button:hover {
-  background-color: #407cc6;
+  background-color: var(--color-amarillo);
 }
 
 .logout-btn {

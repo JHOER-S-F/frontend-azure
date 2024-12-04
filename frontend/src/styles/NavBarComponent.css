@@ -2,7 +2,7 @@
 .titlle {
   font-family: 'Abril Fatface', serif;
   font-size: 2.5rem;
-  color: #78EB14; /* Color primario */
+  color: #5eb90e; /* Color verde */
   font-weight: bold;
   text-decoration: none;
   position: relative;
@@ -12,7 +12,7 @@
 }
 
 .titlle:hover {
-  color: #499309; /* Color secundario al hacer hover */
+  color: #499309; /* Color amarillo al hacer hover */
   transform: scale(1.1);
 }
 
@@ -51,7 +51,7 @@
   
   /* Estilo para los enlaces de la barra de navegación */
   .nav-link {
-    color: var(--color-blanco); /* Color de texto de los enlaces */
+    color: #838383f6;/* Color de texto de los enlaces */
     text-decoration: none; /* Sin subrayado */
     display: block; /* Convertir en bloque para el relleno */
     font-size: 1rem; /* Tamaño de fuente */
