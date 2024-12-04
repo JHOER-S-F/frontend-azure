@@ -243,14 +243,14 @@ export default {
 
 .create-user button, .edit-user button {
   padding: 10px 20px;
-  background-color: #42b983;
+  background-color: #78EB14;
   color: white;
   border: none;
   cursor: pointer;
 }
 
 .create-user button:hover, .edit-user button:hover {
-  background-color: #3d668f;
+  background-color: #407cc6;
 }
 
 .user-list table {

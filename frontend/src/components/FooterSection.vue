@@ -109,7 +109,7 @@ footer {
 }
 
 .footer-links a:hover {
-  color: #2ecc71; /* Verde bonito */
+  color: #2aa226; /* Verde bonito */
   transform: translateY(-3px); /* Animación al pasar el mouse */
   text-decoration: underline;
 }
@@ -133,7 +133,7 @@ footer {
 }
 
 .social-media a:hover {
-  color: #2ecc71; /* Verde bonito */
+  color: #2aa226; /* Verde bonito */
   transform: scale(1.2); /* Agrandar el icono al pasar el mouse */
 }
 
@@ -146,7 +146,7 @@ footer {
 
 /* Botón para volver arriba */
 .back-to-top {
-  background-color: #2ecc71;
+  background-color: #2aa226;
   color: white;
   border: none;
   padding: 0.7rem 1.5rem;
@@ -157,7 +157,7 @@ footer {
 }
 
 .back-to-top:hover {
-  background-color: #27ae60;
+  background-color: ##2aa226;
   transform: translateY(-5px);
 }
 

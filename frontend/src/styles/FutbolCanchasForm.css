@@ -1,18 +1,32 @@
 /* Estilo general */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Dosis', sans-serif;
   background-color: #eef1f8;
   color: #333;
   margin: 0;
   padding: 0;
 }
 
-.titulo, h2, p{
+.titulo, h2{
   text-align: center;
+  font-family: 'Concert One', serif;
   font-size: 3rem;
-  color: #3d668f;
+  color: #19b508;
   margin-top: 2rem;
   font-weight: bold;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+h3{
+  font-family: 'Rajdhani', serif;
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+p{
+  font-size: 1.5rem;
+  margin-top: 2rem;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
 }
 
@@ -41,9 +55,10 @@ body {
 .selected-client {
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, #42b983, #3d668f);
-  color: white;
+  background: linear-gradient(top, #f2f6f8 0%, #d8e1e7 27%, #b5c6d0 53%, #e0eff9 100%);
+  color: black;
   padding: 1rem;
+  box-shadow: 6px 7px 22px 1px rgba(87,86,87,0.56);
   border-radius: 12px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
@@ -52,7 +67,8 @@ body {
 }
 
 .selected-client:hover {
-  background: linear-gradient(135deg, #3d668f, #42b983);
+  background: linear-gradient(135deg, #7AE864, #A0EF91);
+  color: #fff;
   transform: translateY(-4px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
@@ -74,7 +90,7 @@ body {
 
 .dcliente {
   font-size: 1.2rem;
-  color: white;
+  color: #cbcbcb;
   font-weight: 600;
 }
 
@@ -82,14 +98,14 @@ body {
   list-style: none;
   padding: 0;
   margin-top: 15px;
-  background: linear-gradient(135deg, #42b983, #3d668f);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(top, #f2f6f8 0%, #d8e1e7 27%, #b5c6d0 53%, #e0eff9 100%);  
+  box-shadow: 4px 7px 22px 1px rgba(87,86,87,0.56);
   border-radius: 10px;
   overflow: hidden;
 }
 
 .dropdown-item {
-  background: linear-gradient(135deg, #42b983, #3d668f);
+  background: linear-gradient(top, #f2f6f8 0%, #d8e1e7 27%, #b5c6d0 53%, #e0eff9 100%);
   display: flex;
   align-items: center;
   padding: 1rem;
@@ -118,12 +134,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(135deg, #e67e22, #42b983);
-  color: white;
+  background: linear-gradient(top, #f2f6f8 0%, #d8e1e7 27%, #b5c6d0 53%, #e0eff9 100%);  
+  color: black;
   padding: 1rem;
   margin-bottom: 15px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 7px 22px 1px rgba(87,86,87,0.56);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -133,7 +149,7 @@ body {
 }
 
 .boton-reservar {
-  background-color: #3d668f;
+  background-color: #407cc6;
   color: white;
   padding: 0.8rem 1.2rem;
   border: none;
@@ -144,17 +160,16 @@ body {
 }
 
 .boton-reservar:hover {
-  background-color: #42b983;
+  background-color: #1aa907;
   transform: translateY(-3px);
 }
 
 /* Formulario de reserva */
 .formulario-reserva {
-
-  background: linear-gradient(135deg, #e67e22, #42b983);
+  background: linear-gradient(top, #e2f5fe 0%, #d8e1e7 27%, #aabeca 53%, #cae6f8 100%); 
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 7px 22px 1px rgba(87,86,87,0.56);
   max-width: 600px;
   margin: 2rem auto;
   text-align: center;
@@ -169,27 +184,27 @@ body {
 .campo-formulario label {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #3d668f;
+  color: #27598b;
   margin-bottom: 0.5rem;
 }
 
 .input {
   padding: 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 8px;
   transition: border-color 0.3s ease;
   font-size: 1rem;
 }
 
 .input:focus {
-  border-color: #42b983;
+  border-color: #046207;
   outline: none;
   box-shadow: 0 0 8px rgba(66, 185, 131, 0.2);
 }
 
 /* Mensaje de éxito */
 .mensaje-exito {
-  background-color: #42b983;
+  background-color: #046207;
   color: white;
   padding: 1.5rem;
   border-radius: 10px;

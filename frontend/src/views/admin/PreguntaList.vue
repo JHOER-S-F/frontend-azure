@@ -116,7 +116,7 @@ export default {
 
 .section-title {
   font-size: 2rem;
-  color: #42b983;
+  color: #78EB14;
   text-align: center;
   margin-bottom: 30px;
 }
@@ -131,7 +131,7 @@ export default {
 
 .form-title {
   font-size: 1.5rem;
-  color: #3d668f;
+  color: #407cc6;
   margin-bottom: 15px;
 }
 
@@ -163,7 +163,7 @@ export default {
 
 .input-field:focus,
 .textarea-field:focus {
-  border-color: #42b983;
+  border-color: #78EB14;
 }
 
 .textarea-field {
@@ -185,23 +185,23 @@ export default {
 }
 
 .btn-submit {
-  background-color: #42b983;
+  background-color: #78EB14;
   color: white;
   border: none;
 }
 
 .btn-submit:hover {
-  background-color: #3d668f;
+  background-color: #407cc6;
 }
 
 .btn-cancel {
-  background-color: #e74c3c;
+  background-color: #f64835;
   color: white;
   border: none;
 }
 
 .btn-cancel:hover {
-  background-color: #c0392b;
+  background-color: #c51400;
 }
 
 /* Lista de preguntas */
@@ -211,7 +211,7 @@ export default {
 
 .list-title {
   font-size: 1.5rem;
-  color: #3d668f;
+  color: #407cc6;
   margin-bottom: 15px;
 }
 
@@ -238,7 +238,7 @@ export default {
 }
 
 .question-email {
-  color: #42b983;
+  color: #78EB14;
 }
 
 .question-message {
@@ -255,7 +255,7 @@ export default {
 
 .btn-delete {
   padding: 8px 12px;
-  background-color: #e74c3c;
+  background-color: #f64835;
   color: white;
   border: none;
   border-radius: 6px;
@@ -264,13 +264,13 @@ export default {
 }
 
 .btn-delete:hover {
-  background-color: #c0392b;
+  background-color: #c51400;
 }
 
 .btn-create {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #42b983;
+  background-color: #78EB14;
   color: white;
   border: none;
   border-radius: 6px;
@@ -280,6 +280,6 @@ export default {
 }
 
 .btn-create:hover {
-  background-color: #3d668f;
+  background-color: #407cc6;
 }
 </style>

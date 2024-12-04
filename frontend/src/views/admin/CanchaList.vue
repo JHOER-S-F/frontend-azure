@@ -167,7 +167,7 @@ export default {
 .form-title {
   text-align: center;
   font-size: 2rem;
-  color: #42b983;
+  color: #78EB14;
   margin-bottom: 20px;
 }
 
@@ -198,12 +198,12 @@ export default {
 
 .form-input:focus,
 .form-select:focus {
-  border-color: #42b983;
+  border-color: #78EB14;
 }
 
 .submit-btn {
   padding: 10px 15px;
-  background-color: #42b983;
+  background-color: #78EB14;
   color: white;
   border: none;
   border-radius: 6px;
@@ -213,19 +213,19 @@ export default {
 }
 
 .submit-btn:hover {
-  background-color: #3d668f;
+  background-color: #407cc6;
 }
 
 .list-title {
   font-size: 1.5rem;
-  color: #3d668f;
+  color: #407cc6;
   margin-top: 30px;
 }
 
 .empty-message {
   text-align: center;
   font-size: 1.2rem;
-  color: #e74c3c;
+  color: #f64835;
 }
 
 .cancha-list {
@@ -260,20 +260,20 @@ export default {
 }
 
 .edit-btn {
-  background-color: #f39c12;
+  background-color: #f9ef35;
   color: white;
 }
 
 .edit-btn:hover {
-  background-color: #e67e22;
+  background-color: #c1b402;
 }
 
 .delete-btn {
-  background-color: #e74c3c;
+  background-color: #f64835;
   color: white;
 }
 
 .delete-btn:hover {
-  background-color: #c0392b;
+  background-color: #c51400;
 }
 </style>

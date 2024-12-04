@@ -180,7 +180,7 @@ export default {
 .dashboard-title {
   text-align: center;
   font-size: 2.5rem;
-  color: #42b983;
+  color: #78EB14;
   margin-bottom: 20px;
 }
 
@@ -190,7 +190,7 @@ export default {
 
 h2 {
   font-size: 1.5rem;
-  color: #3d668f;
+  color: #407cc6;
   margin-bottom: 10px;
 }
 
@@ -211,7 +211,7 @@ li {
   position: fixed;
   top: 1rem;
   left: 1rem;
-  background-color: #42b983;
+  background-color: #78EB14;
   color: white;
   border: none;
   padding: 1rem;
@@ -223,7 +223,7 @@ li {
 }
 
 .toggle-button:hover {
-  background-color: #3d668f;
+  background-color: #407cc6;
 }
 
 .sidebar {
@@ -259,11 +259,11 @@ li {
 }
 
 .sidebar button.active {
-  background-color: #42b983;
+  background-color: #78EB14;
 }
 
 .sidebar button:hover {
-  background-color: #3d668f;
+  background-color: #407cc6;
 }
 
 .logout-btn {
@@ -281,7 +281,7 @@ li {
 }
 
 .section-content h2 {
-  color: #3d668f;
+  color: #407cc6;
 }
 
 /* Estilos de transición y sombras */
@@ -290,13 +290,13 @@ button {
   border-radius: 4px;
   border: none;
   cursor: pointer;
-  background-color: #42b983;
+  background-color: #78EB14;
   color: white;
   transition: background-color 0.3s, transform 0.3s;
 }
 
 button:hover {
-  background-color: #3d668f;
+  background-color: #407cc6;
   transform: translateY(-2px);
 }
 

@@ -1,7 +1,8 @@
 /* Estilos generales para la barra de navegación */
 .titlle {
+  font-family: 'Abril Fatface', serif;
   font-size: 2.5rem;
-  color: #72b942; /* Color primario */
+  color: #78EB14; /* Color primario */
   font-weight: bold;
   text-decoration: none;
   position: relative;
@@ -11,7 +12,7 @@
 }
 
 .titlle:hover {
-  color: #22e6dc; /* Color secundario al hacer hover */
+  color: #499309; /* Color secundario al hacer hover */
   transform: scale(1.1);
 }
 
@@ -22,7 +23,7 @@
   bottom: -5px;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, #b94283, #e67e22, #3d668f); /* Gradiente personalizado */
+  background: linear-gradient(90deg,#3da23b, #e1f261, #3d8f45); /* Gradiente personalizado */
   transition: height 0.3s ease;
 }
 
@@ -35,7 +36,7 @@
     padding: 1rem; /* Espaciado interno */
     display: flex; /* Usar flexbox para la disposición */
     justify-content: center; /* Centrar los elementos en el eje horizontal */
-    background-color: var(--color-primario); /* Color de fondo de la barra de navegación */
+    background-color: #E7F5D9; /* Color de fondo de la barra de navegación */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para un efecto de elevación */
   }
   
@@ -60,13 +61,13 @@
   }
   
   .nav-link:hover {
-    background-color: var(--color-secundario); /* Color de fondo al pasar el ratón */
+    background-color: #115704; /* Color de fondo al pasar el ratón */
     color: var(--color-blanco); /* Color de texto al pasar el ratón */
   }
   
   /* Botón de cerrar sesión */
   .logout-button {
-    background-color: var(--color-secundario); /* Color de fondo del botón */
+    background-color: #0f8f16; /* Color de fondo del botón */
     color: var(--color-blanco); /* Color de texto del botón */
     border: none; /* Sin borde */
     padding: 0.5rem 1rem; /* Espaciado interno */
@@ -77,7 +78,7 @@
   }
   
   .logout-button:hover {
-    background-color: #d35400; /* Color de fondo al pasar el ratón */
+    background-color: #2e9803; /* Color de fondo al pasar el ratón */
   }
   
   /* Estilos responsivos para pantallas pequeñas */

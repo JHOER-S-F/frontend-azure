@@ -114,9 +114,9 @@ export default {
   max-width: 600px;
   margin: 50px auto;
   padding: 30px;
-  background: linear-gradient(to right, #42b983, #3d668f);
+  background: linear-gradient(top, #f2f6f8 3%, #c8e3f6 27%, #b8e5ff 53%, #cfe8f9 100%);
   border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 6px 7px 22px 1px rgba(87,86,87,0.56);
   transition: transform 0.3s ease-in-out;
 }
 
@@ -128,13 +128,14 @@ export default {
   color: var(--color-primario);
   font-size: 30px;
   margin-bottom: 20px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Concert One', sans-serif;
   text-align: center;
 }
 
 .contact-text {
-  color: #555;
-  line-height: 1.8;
+    font-family: 'Dosis', Sans-Serif;
+    color: #555;
+    line-height: 1.8;
 }
 
 .contact-link {
@@ -151,12 +152,13 @@ export default {
 .contact-info {
   margin-top: 25px;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #f6f9d0;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .contact-subtitle {
+  font-family: 'Dosis', Serif;
   color: var(--color-terciario);
   margin-bottom: 10px;
   font-weight: bold;
@@ -167,6 +169,7 @@ export default {
 }
 
 .form-label {
+  font-family: 'Advent Pro', Sans-Serif;
   font-size: 16px;
   color: var(--color-secundario);
   margin-bottom: 5px;
@@ -176,11 +179,12 @@ export default {
 
 .form-input {
   width: 100%;
-  padding: 12px;
+  height:40px;
+  margin-right: 40px;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 16px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Dosis', sans-serif;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -198,6 +202,7 @@ export default {
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-family: 'Rajdhani', Sans-Serif;
   font-size: 16px;
   font-weight: bold;
   transition: background-color 0.3s ease, transform 0.3s ease;
@@ -212,7 +217,7 @@ export default {
   width: 100%;
   padding: 15px;
   background-color: var(--color-secundario);
-  color: var(--color-blanco);
+  color: var(--color-negro);
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -222,7 +227,8 @@ export default {
 }
 
 .submit-button:hover {
-  background-color: var(--color-terciario);
+  background-color: var(--color-primario);
+  color: #fff;
   transform: scale(1.05);
 }
 
@@ -233,7 +239,7 @@ export default {
 }
 
 .error-message {
-  color: #e74c3c;
+  color: #f64835;
 }
 
 .success-message {

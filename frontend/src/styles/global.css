@@ -7,16 +7,16 @@
 
 /* Paleta de colores */
 :root {
-  --color-primario: #42b983; /* Verde */
-  --color-secundario: #e67e22; /* Naranja */
-  --color-terciario: #3d668f; /* Azul oscuro */
+  --color-primario: #78eb14; /* Verde */
+  --color-secundario: #e3eb14; /* Amarillo */
+  --color-terciario: #407cc6; /* Azul oscuro */
   --color-blanco: #ffffff; /* Blanco */
   --color-negro: #000000; /* Negro */
 }
 
 /* Tipografía global */
 body {
-  font-family: 'Roboto', sans-serif; /* Usar Roboto como fuente global */
+  font-family: 'Dosis', sans-serif; /* Usar Dosis como fuente global */
   color: var(--color-negro); /* Color oscuro por defecto */
   background-color: #f4f6f9; /* Fondo claro para toda la aplicación */
   line-height: 1.6; /* Mejorar la legibilidad del texto */
@@ -72,18 +72,19 @@ input:focus, select:focus, textarea:focus {
 
 /* Botones */
 button {
-  background-color: var(--color-primario); /* Verde para botones */
+  background-color: var(--color-secundario); /* Verde para botones */
   color: var(--color-blanco);
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
+  font-family: 'Advent Pro', serif;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease; /* Efectos visuales */
 }
 
 button:hover {
-  background-color: var(--color-secundario); /* Naranja más oscuro en hover */
+  background-color: var(--color-primario); /* Amarillo más oscuro en hover */
   transform: scale(1.05); /* Aumento suave en hover */
 }
 
@@ -130,7 +131,7 @@ ul {
 
 ul li {
   margin-left: 10px;
-  color: var(--color-secundario); /* Naranja para listas no ordenadas */
+  color: var(--color-secundario); /* Amarillo para listas no ordenadas */
 }
 
 ol li {

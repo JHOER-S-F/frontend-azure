@@ -197,7 +197,7 @@ export default {
 }
 
 .tabla-reservas th {
-  background-color: #42b983;
+  background-color: #78EB14;
   color: white;
 }
 
@@ -215,17 +215,17 @@ export default {
 }
 
 .btn-editar {
-  background-color: #3d668f;
+  background-color: #407cc6;
   color: white;
 }
 
 .btn-eliminar {
-  background-color: #e67e22;
+  background-color: #c1b402;
   color: white;
 }
 
 .btn-actualizar {
-  background-color: #42b983;
+  background-color: #78EB14;
   color: white;
 }
 

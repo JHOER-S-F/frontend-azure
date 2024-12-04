@@ -181,7 +181,7 @@ export default {
 /* Título principal */
 .title {
   text-align: center;
-  color: #42b983;
+  color: #78EB14;
   font-size: 2rem;
   margin-bottom: 20px;
 }
@@ -205,12 +205,12 @@ export default {
 
 .form-input:focus,
 .file-input:focus {
-  border-color: #42b983;
+  border-color: #78EB14;
 }
 
 .submit-btn {
   padding: 10px;
-  background-color: #42b983;
+  background-color: #78EB14;
   color: white;
   border: none;
   border-radius: 6px;
@@ -220,7 +220,7 @@ export default {
 }
 
 .submit-btn:hover {
-  background-color: #3d668f;
+  background-color: #407cc6;
 }
 
 /* Estilos para la lista de clientes */
@@ -230,7 +230,7 @@ export default {
 
 .list-title {
   font-size: 1.5rem;
-  color: #3d668f;
+  color: #407cc6;
   margin-bottom: 20px;
 }
 
@@ -281,20 +281,20 @@ export default {
 }
 
 .edit-btn {
-  background-color: #f39c12;
+  background-color: #f9ef35;
   color: white;
 }
 
 .edit-btn:hover {
-  background-color: #e67e22;
+  background-color: #c1b402;
 }
 
 .delete-btn {
-  background-color: #e74c3c;
+  background-color: #f64835;
   color: white;
 }
 
 .delete-btn:hover {
-  background-color: #c0392b;
+  background-color: #c51400;
 }
 </style>

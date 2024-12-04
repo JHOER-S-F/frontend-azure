@@ -151,7 +151,7 @@ button:hover {
 }
 
 .error-message {
-  color: #e74c3c; /* Color rojo para los mensajes de error */
+  color: #f64835; /* Color rojo para los mensajes de error */
   margin-bottom: 10px;
   font-weight: bold; /* Resaltar mensaje de error */
 }

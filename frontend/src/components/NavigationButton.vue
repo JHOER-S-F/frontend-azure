@@ -52,11 +52,11 @@
   }
   
   .sidebar-button:hover {
-    background-color: #42b983;
+    background-color: #78EB14;
   }
   
   .sidebar-button.active {
-    background-color: #3d668f;
+    background-color: #407cc6;
   }
   </style>
   
